@@ -329,8 +329,8 @@ docker pull mariadb:latest
 ```
 
 **บันทึกผลการทดลอง 1:**
-```bash
 <img width="1329" height="395" alt="image" src="https://github.com/user-attachments/assets/fcbcfcb4-32de-4787-842f-76174d093d24" />
+```bash
 
  
 ```
