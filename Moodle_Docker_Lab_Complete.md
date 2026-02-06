@@ -332,7 +332,7 @@ docker pull mariadb:latest
 <img width="966" height="247" alt="image" src="https://github.com/user-attachments/assets/a022828b-c868-45e4-a509-0d3ee4ab3f30" />
 
 
-```
+
 #### 2.2 รัน Docker Compose
 
 ```bash
