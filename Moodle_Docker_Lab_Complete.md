@@ -432,6 +432,8 @@ docker volume inspect moodle-docker_moodledata
 ```
 
 **บันทึกผลการทดลอง 5:**
+<img width="1752" height="852" alt="image" src="https://github.com/user-attachments/assets/72d62180-b5df-4562-bac5-dcb6fed359f4" />
+
 ```bash
  รูปผลการรัน ตรวจสอบ volume
 ```
@@ -483,6 +485,8 @@ docker volume inspect moodle-docker_moodledata
 หลังจากบันทึกแล้ว ระบบจะแสดงหน้า **Dashboard** ของระบบ
 
 **บันทึกผลการทดลอง 6:**
+<img width="565" height="1078" alt="image" src="https://github.com/user-attachments/assets/b40bb335-9d4b-42e9-af05-f4cda3506acb" />
+
 ```bash
  รูปหน้า Dashboard 
 ```
@@ -626,6 +630,8 @@ h1 {
 - Favicon: 32x32 px (ICO/PNG)
 
 **บันทึกผลการทดลอง 6-1:**
+<img width="2255" height="1503" alt="image" src="https://github.com/user-attachments/assets/3d11caaf-4cde-4b8f-96a0-7652db02e9ab" />
+
 ```bash
  รูป ผลการปรับแต่ง Theme
 ```
@@ -662,6 +668,8 @@ Course Category ใช้จัดกลุ่มรายวิชาตาม�
 **สร้างกลุ่มวิชาเพิ่มเติม โดยใช้กลุ่มสาระที่มีของ สพฐ.:**
 
 **บันทึกผลการทดลอง 7:**
+<img width="2255" height="1503" alt="image" src="https://github.com/user-attachments/assets/0d819d4c-e724-4930-8964-3ae434a13c0f" />
+
 ```bash
  รูปหน้า  Category ที่มีการสร้างกลุ่ม ตามกลุ่มสาระของ สพฐ.
 ```
@@ -734,6 +742,8 @@ Learning outcomes:
 4. คลิก **Save and display**
 
 **บันทึกผลการทดลอง 8:**
+<img width="2255" height="1503" alt="image" src="https://github.com/user-attachments/assets/30b63f23-a66e-49bd-81fe-a2871193e959" />
+
 ```bash
  รูปหน้าผลลัพธ์การสร้างรายวิชา
 ```
@@ -795,6 +805,8 @@ Programming, Python, Data Science
 3. คลิก **Create user**
 
 **บันทึกผลการทดลอง 9:**
+<img width="2249" height="1503" alt="image" src="https://github.com/user-attachments/assets/6b394827-db3e-49a8-901a-a011816dd095" />
+
 ```bash
  รูปหน้า ผลการสร้าง User ใหม่
 ```
@@ -818,6 +830,8 @@ student003,Pass@123,สมศักดิ์,ขยัน,student003@example.com
 6. Preview และยืนยัน
 
 **บันทึกผลการทดลอง 10:**
+<img width="2255" height="1503" alt="image" src="https://github.com/user-attachments/assets/e0b8ad40-d475-4941-94d2-f5095f375a95" />
+
 ```bash
  รูปหน้า ผลการ Upload Users
 ```
