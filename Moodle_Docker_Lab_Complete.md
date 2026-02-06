@@ -379,9 +379,10 @@ moodle_db     docker-entrypoint.sh mariadbd    Up      3306/tcp
 - **Ports** = Port mapping ที่ใช้งาน
   
 **บันทึกผลการทดลอง 3:**
-```bash
- รูปผลการรัน docker-compose ps
-```
+
+
+<img width="1069" height="161" alt="image" src="https://github.com/user-attachments/assets/d631c331-4482-4aa4-a3ac-49af54658677" />
+
 
 
 #### 2.4 ตรวจสอบ Logs
