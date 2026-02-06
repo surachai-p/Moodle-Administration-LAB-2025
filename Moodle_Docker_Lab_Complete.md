@@ -405,6 +405,8 @@ docker start moodle_app
 
 ```
 **บันทึกผลการทดลอง 4:**
+<img width="1257" height="999" alt="image" src="https://github.com/user-attachments/assets/87b5fbba-c770-4e52-bb70-ec12318a047c" />
+
 ```bash
  รูปผลการรัน docker-compose logs 
 ```
