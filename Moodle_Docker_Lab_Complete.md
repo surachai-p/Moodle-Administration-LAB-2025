@@ -776,7 +776,7 @@ student003,Pass@123,สมศักดิ์,ขยัน,student003@example.com
 **บันทึกผลการทดลอง 10:**
 
 
-![Uploading image.png…]()
+<img width="1915" height="1037" alt="image" src="https://github.com/user-attachments/assets/2fd8a144-3a31-4884-b013-d48f233804a2" />
 
 
 #### 6.4.3 การลงทะเบียนเรียน (Enrolment)
