@@ -416,9 +416,8 @@ docker volume inspect moodle-docker_moodledata
 ```
 
 **บันทึกผลการทดลอง 5:**
-```bash
- รูปผลการรัน ตรวจสอบ volume
-```
+<img width="1058" height="788" alt="image" src="https://github.com/user-attachments/assets/3802c6c0-88cc-4076-9a71-9db99d3dfe0d" />
+
 
 ---
 
