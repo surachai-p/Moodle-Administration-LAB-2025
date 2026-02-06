@@ -614,8 +614,9 @@ h1 {
 
 **บันทึกผลการทดลอง 6-1:**
 ```bash
- รูป ผลการปรับแต่ง Theme
 ```
+<img width="1470" height="956" alt="ภาพถ่ายหน้าจอ 2569-02-06 เวลา 10 56 42" src="https://github.com/user-attachments/assets/d67fa08c-f2f0-4a58-9ee6-ea0e5c1868fc" />
+
 ---
 
 ### 6.2 การจัดการ Course Categories และ Courses
