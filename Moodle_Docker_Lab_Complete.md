@@ -326,7 +326,8 @@ docker pull mariadb:latest
 
 **บันทึกผลการทดลอง 1:**
 
- <img width="473" height="265" alt="image" src="https://github.com/user-attachments/assets/089892ec-ba42-48e5-8696-4ab36156e466" />
+ <img width="847" height="294" alt="image" src="https://github.com/user-attachments/assets/967f8aa2-8eb4-4cb9-a144-936c9c3c5f04" />
+
  
 #### 2.2 รัน Docker Compose
 
@@ -370,9 +371,8 @@ moodle_db     docker-entrypoint.sh mariadbd    Up      3306/tcp
 - **Ports** = Port mapping ที่ใช้งาน
   
 **บันทึกผลการทดลอง 3:**
-```bash
- รูปผลการรัน docker-compose ps
-```
+
+<img width="1353" height="123" alt="image" src="https://github.com/user-attachments/assets/71b2c723-f4e2-4723-bb6d-98350aa3229f" />
 
 
 #### 2.4 ตรวจสอบ Logs
