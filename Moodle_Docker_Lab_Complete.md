@@ -880,6 +880,8 @@ Cohort = กลุ่มผู้ใช้ (เช่น ม.1, ม.2 หรื�
 ```bash
  รูปหน้า ผลการ Upload Users และเพิ่มคอลัมน์ cohort
 ```
+<img width="894" height="952" alt="image" src="https://github.com/user-attachments/assets/e1f0877a-4e64-4a94-bd18-af66f8e21e38" />
+
 ---
 
 
