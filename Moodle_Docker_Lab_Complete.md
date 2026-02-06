@@ -909,7 +909,9 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+Docker Image คือไฟล์ต้นแบบที่ใช้สำหรับสร้าง Docker Container ภายในประกอบด้วยระบบปฏิบัติการ โปรแกรม และการตั้งค่าต่าง ๆ แต่ยังไม่สามารถทำงานได้
 
+Docker Container คือสิ่งที่ถูกสร้างจาก Docker Image และกำลังทำงานจริง สามารถเริ่ม หยุด และใช้งานแอปพลิเคชันได้
 ```
 
 **2. จากสถาปัตยกรรมในการทดลอง มี Container กี่ตัว? แต่ละตัวมีหน้าที่อะไร?**
