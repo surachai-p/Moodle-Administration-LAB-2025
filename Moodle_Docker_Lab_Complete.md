@@ -932,28 +932,35 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+- Docker Image: เปรียบเสมือน "พิมพ์เขียว" (Blueprint) หรือแผ่นติดตั้งโปรแกรมที่เป็น Read-only ซึ่งรวมเอา OS, Library และ Code ไว้ด้วยกัน (เช่น Image ของ Moodle)
+- Docker Container: เปรียบเสมือน "บ้านที่สร้างเสร็จแล้ว" หรือ Instance ที่ทำงานจริงซึ่งถูกสร้างมาจาก Image เราสามารถสั่ง Start, Stop หรือลบทิ้งได้
+ตัวอย่าง: Image คือไฟล์ติดตั้ง Windows .ISO ส่วน Container คือคอมพิวเตอร์ที่รัน Windows เครื่องนั้นอยู่
 ```
 
 **2. จากสถาปัตยกรรมในการทดลอง มี Container กี่ตัว? แต่ละตัวมีหน้าที่อะไร?**
 
 คำตอบ:
 ```
-
+โดยทั่วไปจะมีอย่างน้อย 2 ตัวหลัก คือ:
+1. Moodle Container: ทำหน้าที่เป็น Web Server (Apache/Nginx) และประมวลผล PHP เพื่อแสดงหน้าเว็บไซต์ Moodle
+2. Database Container (MySQL/MariaDB/PostgreSQL): ทำหน้าที่เก็บข้อมูลดิบทั้งหมด เช่น รายชื่อผู้ใช้, คะแนนสอบ และโครงสร้างคอร์สเรียน
 ```
 
 **3. จากการทดลองมีการจัดการ Volume แบบใด มีข้อดีข้อเสียอย่างไร?**
 
 คำตอบ:
 ```
-
+ส่วนใหญ่ใช้ "Named Volumes" หรือ "Bind Mounts"
+- ข้อดี: ข้อมูล (เช่น ไฟล์งานที่นักเรียนส่ง หรือ Database) จะไม่หายไปเมื่อเราลบหรืออัปเดต Container (Data Persistence)
+- ข้อเสีย: หากจัดการสิทธิ์การเข้าถึงไฟล์ (Permissions) ไม่ถูกต้อง อาจทำให้ Web Server เขียนไฟล์ลงโฟลเดอร์ moodledata ไม่ได้
 ```
 
 **4. Network ใน Docker Compose ทำหน้าที่อะไร? Container สื่อสารกันอย่างไร?**
 
 คำตอบ:
 ```
-
+- หน้าที่: สร้าง "เครือข่ายเสมือน" วงเฉพาะให้ Container กลุ่มเดียวกันรู้จักกันและคุยกันได้โดยแยกออกจากเครือข่ายภายนอกเพื่อความปลอดภัย
+- การสื่อสาร: Container จะคุยกันผ่าน "Service Name" ที่ตั้งไว้ในไฟล์ YAML (เช่น Moodle จะเชื่อมไปที่ DB โดยใช้ชื่อ host ว่า 'db') แทนการใช้ IP Address ที่เปลี่ยนแปลงได้ง่าย
 
 ```
 
@@ -962,14 +969,16 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+ทำหน้าที่กำหนด "ลำดับการรัน" ของ Container เช่น กำหนดให้ Database ต้อง Start ขึ้นมาก่อน Moodle เสมอ เพื่อป้องกันไม่ให้ Moodle เกิด Error เพราะหาฐานข้อมูลไม่เจอในขณะที่กำลังบูตระบบ
 ```
 
 **6. ถ้าต้องการเปลี่ยน Port ของ Moodle  เป็น 9000 ต้องแก้ไขส่วนใดของไฟล์?**
 
 คำตอบ:
 ```
-
+แก้ไขในส่วนของ `ports:` ภายใต้บริการ moodle โดยเปลี่ยนเลขตัวหน้า (Host Port) ดังนี้:
+ports:
+  - "9000:80"  # เลขตัวหน้าคือ Port ที่เราเข้าผ่าน Browser, เลขตัวหลังคือ Port ภายใน Container
 
 ```
 
@@ -977,7 +986,8 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+- หมายความว่า: บอกให้ Moodle ไปเชื่อมต่อฐานข้อมูลที่เครื่องชื่อ "db" ซึ่งเป็นชื่อ Service ใน Docker Network
+- ทำไมไม่ใช้ localhost: เพราะในโลกของ Container คำว่า `localhost` จะหมายถึง "ตัวเอง" (ตัว Moodle เอง) ซึ่งไม่มี Database รันอยู่ในนั้น ฐานข้อมูลอยู่อีก Container หนึ่ง จึงต้องเรียกผ่านชื่อเครื่องใน Network แทน
 ```
 
 
@@ -985,20 +995,28 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+- ข้อดี: ติดตั้งง่ายและเร็ว (Standardized), ย้ายเครื่องสะดวก, ควบคุมเวอร์ชันของ PHP/DB ได้แม่นยำ ไม่ตีกับโปรแกรมอื่นในเครื่อง Host
+- ข้อเสีย: ต้องใช้ทรัพยากรเครื่อง (RAM/CPU) ในการรัน Docker Engine และมีขั้นตอนการเรียนรู้การจัดการคำสั่ง Docker เพิ่มเติม
 ```
 
 **9. ถ้าต้องการเพิ่ม Container Redis สำหรับ Caching จะต้องแก้ไข docker-compose.yml อย่างไร?**
 
 คำตอบ (เขียน YAML):
 ```yaml
+services:
+  redis:
+    image: redis:7-alpine
+    restart: always
+    networks:
+      - moodle_net
 
-
-
-
-
-
-
+  moodle:
+    # ... (ส่วนอื่นคงเดิม)
+    environment:
+      - MOODLE_REDIS_HOST=redis
+    depends_on:
+      - db
+      - redis
 
 ```
 
@@ -1008,17 +1026,18 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 คำตอบ:
 ```
 วิธีตรวจสอบ:
-
+1. ใช้คำสั่ง `docker-compose ps` ดูว่า Database Status เป็น "Up" หรือไม่
+2. เช็ค Log ด้วย `docker-compose logs db` เพื่อดูว่า DB รันสำเร็จหรือมี Error เรื่องรหัสผ่าน
 
 วิธีแก้ไข:
-
+ตรวจสอบไฟล์ docker-compose.yml ว่ารหัสผ่าน (DB_PASSWORD) และชื่อ Host (DB_HOST) ตรงกันทั้งสองฝั่งหรือไม่ และตรวจสอบว่าอยู่ใน Network เดียวกัน
 ```
 
 **11. ถ้ารัน `docker-compose down -v` จะเกิดอะไรขึ้นกับข้อมูล?**
 
 คำตอบ:
 ```
-
+คำสั่งนี้จะทำการหยุดและลบ Container, Network และที่สำคัญที่สุดคือ "ลบ Volumes (-v)" ทั้งหมดทิ้งด้วย ส่งผลให้ข้อมูลในฐานข้อมูลและไฟล์ที่อัปโหลดไว้หายไปทั้งหมด (เหมือนการ Factory Reset)
 
 ```
 
