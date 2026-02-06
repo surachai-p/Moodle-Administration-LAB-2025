@@ -353,7 +353,7 @@ Creating moodle_app ... done
 ```bash
 ```
 <img width="567" height="272" alt="image" src="https://github.com/user-attachments/assets/4d0b1ed1-7b71-4a89-aa4d-1dcd3346fd80" />
-```
+
 
 #### 2.3 ตรวจสอบสถานะ Containers
 
@@ -376,6 +376,7 @@ moodle_db     docker-entrypoint.sh mariadbd    Up      3306/tcp
 ```bash
  รูปผลการรัน docker-compose ps
 ```
+<img width="1064" height="93" alt="image" src="https://github.com/user-attachments/assets/c9ec433b-c837-4407-9ed7-18c942e72ef5" />
 
 
 #### 2.4 ตรวจสอบ Logs
@@ -405,6 +406,7 @@ docker start moodle_app
 ```bash
  รูปผลการรัน docker-compose logs 
 ```
+<img width="1499" height="457" alt="image" src="https://github.com/user-attachments/assets/5e827b3a-5866-4622-a7e4-6758bda90c4c" />
 
 #### 2.5 ตรวจสอบ Network และ Volumes
 
@@ -422,6 +424,7 @@ docker volume inspect moodle-docker_moodledata
 ```bash
  รูปผลการรัน ตรวจสอบ volume
 ```
+<img width="878" height="397" alt="image" src="https://github.com/user-attachments/assets/1ff0c803-73cd-4a3e-8612-4abe8e3cdcaa" />
 
 ---
 
@@ -473,6 +476,7 @@ docker volume inspect moodle-docker_moodledata
 ```bash
  รูปหน้า Dashboard 
 ```
+<img width="1792" height="1082" alt="image" src="https://github.com/user-attachments/assets/dbf20023-bfff-4d7f-b05f-8ab46bc1f86d" />
 
 ---
 
@@ -616,6 +620,8 @@ h1 {
 ```bash
  รูป ผลการปรับแต่ง Theme
 ```
+<img width="907" height="443" alt="image" src="https://github.com/user-attachments/assets/146618a5-e3b0-4be1-9604-53f256e300a7" />
+
 ---
 
 ### 6.2 การจัดการ Course Categories และ Courses
@@ -652,6 +658,8 @@ Course Category ใช้จัดกลุ่มรายวิชาตาม�
 ```bash
  รูปหน้า  Category ที่มีการสร้างกลุ่ม ตามกลุ่มสาระของ สพฐ.
 ```
+<img width="919" height="1013" alt="image" src="https://github.com/user-attachments/assets/9e58857c-985e-4ad2-aa10-e9a906a323bf" />
+<img width="918" height="464" alt="image" src="https://github.com/user-attachments/assets/b3b54006-5d46-475f-96dc-82b464512184" />
 
 #### 6.2.2 สร้าง Course (รายวิชา)
 
