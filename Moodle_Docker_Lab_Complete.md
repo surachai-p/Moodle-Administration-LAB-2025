@@ -939,6 +939,7 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 **1. อธิบายความแตกต่างระหว่าง Docker Image และ Docker Container พร้อมยกตัวอย่าง**
 
+```
 คำตอบ: Docker Image คือ ไฟล์ต้นแบบที่ใช้สำหรับสร้าง Container ภายในจะบรรจุโปรแกรม ระบบปฏิบัติการ และการตั้งค่าต่าง ๆ เปรียบเสมือน “แม่พิมพ์”
 
 Docker Container คือ โปรแกรมที่ถูกนำ Image มารันใช้งานจริง เปรียบเสมือน “ของที่ผลิตออกมาจากแม่พิมพ์”
