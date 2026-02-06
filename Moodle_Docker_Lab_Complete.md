@@ -325,9 +325,11 @@ docker pull mariadb:latest
 ```
 
 **บันทึกผลการทดลอง 1:**
-```bash
- รูปผลการโหลด Images ที่สมบูรณ์ 
-```
+``bash
+ รูปผลการโหลด Images ที่สมบูรณ์
+<img width="1919" height="1018" alt="image" src="https://github.com/user-attachments/assets/a1188e4e-3050-457c-9cbc-ad7b9e55511e" />
+
+``
 #### 2.2 รัน Docker Compose
 
 ```bash
@@ -348,8 +350,10 @@ Creating moodle_app ... done
 ```
 
 **บันทึกผลการทดลอง 2:**
-```bash
- รูปผลการรัน docker-compose ที่สมบูรณ์ 
+``bash
+ รูปผลการรัน docker-compose ที่สมบูรณ์
+<img width="1918" height="1009" alt="image" src="https://github.com/user-attachments/assets/e7f6dbe2-eb58-43b0-a98e-f1e1821b48e9" />
+
 ```
 
 #### 2.3 ตรวจสอบสถานะ Containers
@@ -370,8 +374,10 @@ moodle_db     docker-entrypoint.sh mariadbd    Up      3306/tcp
 - **Ports** = Port mapping ที่ใช้งาน
   
 **บันทึกผลการทดลอง 3:**
-```bash
+``bash
  รูปผลการรัน docker-compose ps
+<img width="1089" height="192" alt="image" src="https://github.com/user-attachments/assets/438b5397-729a-4db4-833b-104e47c611e4" />
+
 ```
 
 
@@ -399,8 +405,10 @@ docker start moodle_app
 
 ```
 **บันทึกผลการทดลอง 4:**
-```bash
- รูปผลการรัน docker-compose logs 
+``bash
+ รูปผลการรัน docker-compose logs
+<img width="1884" height="1020" alt="image" src="https://github.com/user-attachments/assets/dc2d8cbe-5ebf-47ca-9dc0-18069c345bc9" />
+
 ```
 
 #### 2.5 ตรวจสอบ Network และ Volumes
@@ -416,9 +424,11 @@ docker volume inspect moodle-docker_moodledata
 ```
 
 **บันทึกผลการทดลอง 5:**
-```bash
+``bash
  รูปผลการรัน ตรวจสอบ volume
-```
+<img width="551" height="149" alt="image" src="https://github.com/user-attachments/assets/7f92d4d7-71a4-47f8-b17a-a77a0b2eb6b7" />
+
+``
 
 ---
 
@@ -467,9 +477,11 @@ docker volume inspect moodle-docker_moodledata
 หลังจากบันทึกแล้ว ระบบจะแสดงหน้า **Dashboard** ของระบบ
 
 **บันทึกผลการทดลอง 6:**
-```bash
+``bash
  รูปหน้า Dashboard 
-```
+ <img width="1919" height="1013" alt="image" src="https://github.com/user-attachments/assets/e6e7e195-4f5f-4a7e-a966-f578f0e1ac1a" />
+
+``
 
 ---
 
@@ -610,9 +622,12 @@ h1 {
 - Favicon: 32x32 px (ICO/PNG)
 
 **บันทึกผลการทดลอง 6-1:**
-```bash
+``bash
  รูป ผลการปรับแต่ง Theme
-```
+<img width="1917" height="1004" alt="image" src="https://github.com/user-attachments/assets/dc2b6de4-eecf-418b-a6dc-07944e170872" />
+<img width="1919" height="917" alt="image" src="https://github.com/user-attachments/assets/ab246515-09b5-4dff-a6ee-55d5badf9949" />
+
+``
 ---
 
 ### 6.2 การจัดการ Course Categories และ Courses
