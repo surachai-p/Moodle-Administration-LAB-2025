@@ -328,6 +328,9 @@ docker pull mariadb:latest
 ```bash
  รูปผลการโหลด Images ที่สมบูรณ์ 
 ```
+
+<img width="1919" height="946" alt="image" src="https://github.com/user-attachments/assets/59a4baed-491d-41fd-8bf0-eada06b817c1" />
+
 #### 2.2 รัน Docker Compose
 
 ```bash
@@ -352,6 +355,9 @@ Creating moodle_app ... done
  รูปผลการรัน docker-compose ที่สมบูรณ์ 
 ```
 
+<img width="1918" height="948" alt="image" src="https://github.com/user-attachments/assets/6ff0950b-4681-4025-92fd-7958825cdbf4" />
+
+
 #### 2.3 ตรวจสอบสถานะ Containers
 
 ```bash
@@ -373,6 +379,8 @@ moodle_db     docker-entrypoint.sh mariadbd    Up      3306/tcp
 ```bash
  รูปผลการรัน docker-compose ps
 ```
+
+<img width="1416" height="120" alt="image" src="https://github.com/user-attachments/assets/906002f5-fb7e-4406-89ba-61ec28a96a34" />
 
 
 #### 2.4 ตรวจสอบ Logs
@@ -403,6 +411,9 @@ docker start moodle_app
  รูปผลการรัน docker-compose logs 
 ```
 
+<img width="1464" height="522" alt="Screenshot 2026-02-06 094141" src="https://github.com/user-attachments/assets/ed163f13-bf42-4ec1-b353-3a968f5e4129" />
+
+
 #### 2.5 ตรวจสอบ Network และ Volumes
 
 ```bash
@@ -419,6 +430,9 @@ docker volume inspect moodle-docker_moodledata
 ```bash
  รูปผลการรัน ตรวจสอบ volume
 ```
+
+<img width="1919" height="945" alt="image" src="https://github.com/user-attachments/assets/1525132b-9518-4165-b6b4-243228a8ac1a" />
+
 
 ---
 
@@ -470,6 +484,9 @@ docker volume inspect moodle-docker_moodledata
 ```bash
  รูปหน้า Dashboard 
 ```
+
+<img width="1894" height="926" alt="image" src="https://github.com/user-attachments/assets/769e4937-ec3d-4ae7-b8dd-f5ef277a8ecd" />
+
 
 ---
 
