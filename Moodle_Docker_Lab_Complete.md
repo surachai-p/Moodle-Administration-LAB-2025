@@ -1020,6 +1020,8 @@ environment:
 ```
 วิธีตรวจสอบ:
 ตรวจสอบสถานะ Container ฐานข้อมูล
+
+docker-compose ps
 วิธีแก้ไข:
 แก้ไขและรีสตาร์ท Container
 
