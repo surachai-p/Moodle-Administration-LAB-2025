@@ -544,6 +544,7 @@ SMTP hosts: smtp.gmail.com:587
 SMTP security: TLS
 SMTP username: your-email@gmail.com
 SMTP password: your-app-password
+No-reply address:noreply@localhost
 ```
 
 #### 6.1.5 ตั้งค่า Security
