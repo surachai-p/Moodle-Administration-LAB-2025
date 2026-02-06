@@ -1,0 +1,45 @@
+services:
+  db:
+    image: mariadb:latest
+    container_name: moodle_db
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234        # รหัสผ่าน root ของ MariaDB
+      MYSQL_DATABASE: moodle           # ชื่อฐานข้อมูล
+      MYSQL_USER: moodleuser           # ชื่อผู้ใช้ฐานข้อมูล
+      MYSQL_PASSWORD: 1234             # รหัสผ่านผู้ใช้ฐานข้อมูล
+    volumes:
+      - db_data:/var/lib/mysql         # Name volume สำหรับเก็บข้อมูลฐานข้อมูล
+    networks:
+      - moodle_network                 # ใช้ network เดียวกับ Moodle
+    restart: unless-stopped            # รีสตาร์ทอัตโนมัติถ้า container หยุด
+
+  moodle:
+    image: lthub/moodle:education-4.5.8
+    platform: linux/amd64              # ⭐ บังคับใช้ image แบบ Intel (แก้ปัญหา Mac ARM)
+    container_name: moodle_app
+    ports:
+      - "80:80"                        # ถ้า port 80 ชน เปลี่ยนเป็น "8080:80"
+    environment:
+      MOODLE_DB_TYPE: mariadb          # ประเภทฐานข้อมูล
+      MOODLE_DB_HOST: db               # ชื่อ service ของฐานข้อมูล
+      MOODLE_DB_NAME: moodle           # ชื่อฐานข้อมูล
+      MOODLE_DB_USER: moodleuser       # ผู้ใช้ฐานข้อมูล
+      MOODLE_DB_PASSWORD: 1234         # รหัสผ่าน (ต้องตรงกับ MYSQL_PASSWORD)
+      MOODLE_URL: http://localhost     
+    volumes:
+      - moodledata:/moodledata         # เก็บข้อมูล Moodle
+    depends_on:
+      - db                             # ให้ db รันก่อน
+    links:
+      - db                             # เชื่อมต่อ db (ไม่จำเป็นใน Docker รุ่นใหม่)
+    networks:
+      - moodle_network
+    restart: unless-stopped
+
+networks:
+  moodle_network:
+    driver: bridge                     # ใช้ bridge network
+
+volumes:
+  db_data:                             # volume สำหรับเก็บฐานข้อมูล MariaDB
+  moodledata:                          # volume สำหรับเก็บไฟล์ Moodle
