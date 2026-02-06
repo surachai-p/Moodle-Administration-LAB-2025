@@ -473,7 +473,8 @@ docker volume inspect moodle-docker_moodledata
 
 **บันทึกผลการทดลอง 6:**
 ```bash
- รูปหน้า Dashboard 
+ <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/76b8adaa-5b30-47f6-adf2-5090dff90795" />
+
 ```
 
 ---
@@ -616,7 +617,8 @@ h1 {
 
 **บันทึกผลการทดลอง 6-1:**
 ```bash
- รูป ผลการปรับแต่ง Theme
+ <img width="1073" height="277" alt="image" src="https://github.com/user-attachments/assets/e91b89e7-df82-4f64-99e1-dfb10f6ead13" />
+
 ```
 ---
 
@@ -652,7 +654,8 @@ Course Category ใช้จัดกลุ่มรายวิชาตาม�
 
 **บันทึกผลการทดลอง 7:**
 ```bash
- รูปหน้า  Category ที่มีการสร้างกลุ่ม ตามกลุ่มสาระของ สพฐ.
+ <img width="896" height="516" alt="image" src="https://github.com/user-attachments/assets/23c564ac-9d59-4515-90b2-8ed94551401f" />
+
 ```
 
 #### 6.2.2 สร้าง Course (รายวิชา)
@@ -724,7 +727,8 @@ Learning outcomes:
 
 **บันทึกผลการทดลอง 8:**
 ```bash
- รูปหน้าผลลัพธ์การสร้างรายวิชา
+ <img width="1070" height="827" alt="image" src="https://github.com/user-attachments/assets/a3d9f0cd-6c44-40f1-8c5d-ab384942e20d" />
+
 ```
 
 ---
@@ -785,7 +789,8 @@ Programming, Python, Data Science
 
 **บันทึกผลการทดลอง 9:**
 ```bash
- รูปหน้า ผลการสร้าง User ใหม่
+ <img width="1018" height="753" alt="image" src="https://github.com/user-attachments/assets/d331e2ba-27a0-43ed-9911-bf4979569738" />
+
 ```
 
 **วิธีที่ 2: Upload Users (CSV)**
