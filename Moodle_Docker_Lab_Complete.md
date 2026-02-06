@@ -318,9 +318,9 @@ docker-compose up -d
 **ตรวจสอบการทำงานโดยใช้คำสั่ง docker-compose logs -f:**
 
 **บันทึกผลการทดลอง 2:**
-```bash
- รูปผลการรัน docker-compose ที่สมบูรณ์ 
-```
+
+<img width="571" height="113" alt="image" src="https://github.com/user-attachments/assets/28d4c015-80d3-49e8-8ccd-0dca0a2fb77d" />
+
 
 #### 2.3 ตรวจสอบสถานะ Containers
 
