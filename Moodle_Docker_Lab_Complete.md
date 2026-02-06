@@ -325,8 +325,9 @@ docker pull mariadb:latest
 ```
 
 **บันทึกผลการทดลอง 1:**
-```bash
- รูปผลการโหลด Images ที่สมบูรณ์ 
+``bash
+ <img width="901" height="842" alt="image" src="https://github.com/user-attachments/assets/23c14a5f-884e-4704-9b61-9cd326bea3ab" />
+ 
 ```
 #### 2.2 รัน Docker Compose
 
@@ -348,8 +349,9 @@ Creating moodle_app ... done
 ```
 
 **บันทึกผลการทดลอง 2:**
-```bash
- รูปผลการรัน docker-compose ที่สมบูรณ์ 
+``bash
+ <img width="759" height="128" alt="image" src="https://github.com/user-attachments/assets/6677d584-b769-4f71-ab2b-1006921e302a" />
+ 
 ```
 
 #### 2.3 ตรวจสอบสถานะ Containers
@@ -370,8 +372,9 @@ moodle_db     docker-entrypoint.sh mariadbd    Up      3306/tcp
 - **Ports** = Port mapping ที่ใช้งาน
   
 **บันทึกผลการทดลอง 3:**
-```bash
- รูปผลการรัน docker-compose ps
+``bash
+ <img width="1023" height="80" alt="image" src="https://github.com/user-attachments/assets/3b5097e4-8537-40d0-8ea4-28ef29331d01" />
+
 ```
 
 
@@ -399,8 +402,9 @@ docker start moodle_app
 
 ```
 **บันทึกผลการทดลอง 4:**
-```bash
- รูปผลการรัน docker-compose logs 
+``bash
+ <img width="1317" height="567" alt="image" src="https://github.com/user-attachments/assets/1d03d63a-1ff9-4962-b2a2-00823f330cac" />
+
 ```
 
 #### 2.5 ตรวจสอบ Network และ Volumes
@@ -416,8 +420,9 @@ docker volume inspect moodle-docker_moodledata
 ```
 
 **บันทึกผลการทดลอง 5:**
-```bash
- รูปผลการรัน ตรวจสอบ volume
+``bash
+ <img width="941" height="549" alt="Screenshot 2026-02-06 094929" src="https://github.com/user-attachments/assets/31090f0a-9b5c-4217-a827-d0763e7208a6" />
+
 ```
 
 ---
@@ -470,6 +475,7 @@ docker volume inspect moodle-docker_moodledata
 ```bash
  รูปหน้า Dashboard 
 ```
+<img width="1919" height="989" alt="image" src="https://github.com/user-attachments/assets/06048d0a-59b0-4ae0-9082-bcfeff71ecee" />
 
 ---
 
@@ -610,8 +616,9 @@ h1 {
 - Favicon: 32x32 px (ICO/PNG)
 
 **บันทึกผลการทดลอง 6-1:**
-```bash
- รูป ผลการปรับแต่ง Theme
+``bash
+ <img width="1918" height="990" alt="image" src="https://github.com/user-attachments/assets/615598ae-dcce-4f09-b1c2-6e6097eca833" />
+
 ```
 ---
 
@@ -649,6 +656,7 @@ Course Category ใช้จัดกลุ่มรายวิชาตาม�
 ```bash
  รูปหน้า  Category ที่มีการสร้างกลุ่ม ตามกลุ่มสาระของ สพฐ.
 ```
+<img width="1919" height="991" alt="image" src="https://github.com/user-attachments/assets/de3fba53-a59a-44cb-aaa8-1c52cbb5500f" />
 
 #### 6.2.2 สร้าง Course (รายวิชา)
 
