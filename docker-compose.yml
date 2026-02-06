@@ -1,30 +1,30 @@
-version: '3.8'
-
 services:
   db:
     image: mariadb:latest
     container_name: moodle_db
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: 67030011@Kmitl
       MYSQL_DATABASE: moodle
       MYSQL_USER: moodleuser
-      MYSQL_PASSWORD: moodlepassword
+      MYSQL_PASSWORD: 67030011@Kmitl
     volumes:
       - db_data:/var/lib/mysql
     networks:
       - moodle_network
 
   moodle:
-    image: lthub/moodle:latest
+    image: lthub/moodle:education-4.5.8
+    platform: linux/amd64
     container_name: moodle_app
     ports:
-      - "8080:80"
+      - "80:80"
     environment:
       MOODLE_DB_TYPE: mariadb
       MOODLE_DB_HOST: db
       MOODLE_DB_NAME: moodle
       MOODLE_DB_USER: moodleuser
-      MOODLE_DB_PASSWORD: moodlepassword
+      MOODLE_DB_PASSWORD: 67030011@Kmitl
+      MOODLE_URL: http://localhost
     volumes:
       - moodledata:/moodledata
     depends_on:

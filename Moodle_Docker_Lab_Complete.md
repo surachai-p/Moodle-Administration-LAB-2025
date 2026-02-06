@@ -41,7 +41,7 @@
 - **Fast Deployment** - เริ่มต้นและหยุดได้รวดเร็ว
 
 #### 2.1.2 Container vs Virtual Machine
-![Virtual Machine and Container](images/vs_container.png)
+![Virtual Machine and Container](images/diagrams/vs_container.png)
 
 
 #### 2.1.3 Docker Components
@@ -123,7 +123,7 @@ Container A (moodle_app)  --[Bridge Network]--> Container B (moodle_db)
 - รองรับหลายภาษา
 
 #### 2.5.2 Moodle System Architecture
-![Moodle System Architecture](images/moodle_architecture.png)
+![Moodle System Architecture](images/diagrams/moodle_architecture.png)
 
 
 ### 2.5 ระบบที่ใช้ในการทดลอง: lthub/moodle
@@ -151,11 +151,11 @@ Container A (moodle_app)  --[Bridge Network]--> Container B (moodle_db)
 
 ### 3.1 System Architecture Diagram
 
-![System Architecture](images/architecture3.png)
+![System Architecture](images/diagrams/architecture3.png)
 
 
 ### 3.2 Volume และ Data Persistence
-![Volume and Data Persistence](images/volumedata.jpg)
+![Volume and Data Persistence](images/diagrams/volumedata.jpg)
 
 
 ### 3.3 Component Interaction Matrix
@@ -329,9 +329,8 @@ docker pull mariadb:latest
 ```
 
 **บันทึกผลการทดลอง 1:**
-```bash
- รูปผลการโหลด Images ที่สมบูรณ์ 
-```
+![Docker Pull lthub/moodle](images/screenshots/01-docker-pull-lthub.png)
+![Docker Pull MariaDB](images/screenshots/02-docker-pull-mariadb.png)
 #### 2.2 รัน Docker Compose
 
 ```bash
@@ -345,10 +344,9 @@ docker-compose up -d
 **ตรวจสอบการทำงานโดยใช้คำสั่ง docker-compose logs -f:**
 
 **บันทึกผลการทดลอง 2:**
-```bash
- รูปผลการรัน docker-compose ที่สมบูรณ์ 
-```
 
+![Docker Compose Up](images/screenshots/03-docker-compose-up.png)
+![Docker Networks](images/screenshots/04-docker-compose-networks.png)
 #### 2.3 ตรวจสอบสถานะ Containers
 
 ```bash
@@ -367,10 +365,7 @@ moodle_db     docker-entrypoint.sh mariadbd    Up      3306/tcp
 - **Ports** = Port mapping ที่ใช้งาน
   
 **บันทึกผลการทดลอง 3:**
-```bash
- รูปผลการรัน docker-compose ps
-```
-
+![Docker Compose PS](images/screenshots/05-docker-compose-ps.png)
 
 #### 2.4 ตรวจสอบ Logs
 
@@ -396,10 +391,7 @@ docker start moodle_app
 
 ```
 **บันทึกผลการทดลอง 4:**
-```bash
- รูปผลการรัน docker-compose logs 
-```
-
+![Docker Logs](images/screenshots/06-docker-logs.png)
 #### 2.5 ตรวจสอบ Network และ Volumes
 
 ```bash
@@ -413,10 +405,10 @@ docker volume inspect moodle-docker_moodledata
 ```
 
 **บันทึกผลการทดลอง 5:**
-```bash
- รูปผลการรัน ตรวจสอบ volume
-```
 
+![Network LS](images/screenshots/07-network-ls.png)
+![Volume LS](images/screenshots/08-volume-ls.png)
+![Volume Inspect](images/screenshots/09-volume-inspect.png)
 ---
 
 ### ขั้นตอนที่ 3: ติดตั้ง Moodle ผ่าน Web Interface
@@ -464,10 +456,7 @@ docker volume inspect moodle-docker_moodledata
 หลังจากบันทึกแล้ว ระบบจะแสดงหน้า **Dashboard** ของระบบ
 
 **บันทึกผลการทดลอง 6:**
-```bash
- รูปหน้า Dashboard 
-```
-
+![Moodle Dashboard](images/screenshots/10-moodle-dashboard.png)
 ---
 
 ## 6. การตั้งค่าและดูแลระบบ
@@ -608,9 +597,8 @@ h1 {
 - Favicon: 32x32 px (ICO/PNG)
 
 **บันทึกผลการทดลอง 6-1:**
-```bash
- รูป ผลการปรับแต่ง Theme
-```
+![Site Home](images/screenshots/11-site-home.png)
+![Site Settings](images/screenshots/12-site-settings.png)
 ---
 
 ### 6.2 การจัดการ Course Categories และ Courses
@@ -644,9 +632,7 @@ Course Category ใช้จัดกลุ่มรายวิชาตาม�
 **สร้างกลุ่มวิชาเพิ่มเติม โดยใช้กลุ่มสาระที่มีของ สพฐ.:**
 
 **บันทึกผลการทดลอง 7:**
-```bash
- รูปหน้า  Category ที่มีการสร้างกลุ่ม ตามกลุ่มสาระของ สพฐ.
-```
+![Course Categories](images/screenshots/13-course-categories.png)
 
 #### 6.2.2 สร้าง Course (รายวิชา)
 
@@ -716,10 +702,7 @@ Learning outcomes:
 4. คลิก **Save and display**
 
 **บันทึกผลการทดลอง 8:**
-```bash
- รูปหน้าผลลัพธ์การสร้างรายวิชา
-```
-
+![Course Created](images/screenshots/14-course-created.png)
 ---
 
 ### 6.4 การจัดการผู้ใช้งาน (User Management)
@@ -777,10 +760,7 @@ Programming, Python, Data Science
 3. คลิก **Create user**
 
 **บันทึกผลการทดลอง 9:**
-```bash
- รูปหน้า ผลการสร้าง User ใหม่
-```
-
+![User Created](images/screenshots/15-user-created.png)
 **วิธีที่ 2: Upload Users (CSV)**
 
 1. ไปที่ **Site administration → Users → Accounts → Upload users**
@@ -800,9 +780,8 @@ student003,Pass@123,สมศักดิ์,ขยัน,student003@example.com
 6. Preview และยืนยัน
 
 **บันทึกผลการทดลอง 10:**
-```bash
- รูปหน้า ผลการ Upload Users
-```
+![Upload Users](images/screenshots/17-upload-users.png)
+[users.csv](users.csv)
 
 #### 6.4.3 การลงทะเบียนเรียน (Enrolment)
 
@@ -864,6 +843,9 @@ Cohort = กลุ่มผู้ใช้ (เช่น ม.1, ม.2 หรื�
 ```bash
  รูปหน้า ผลการ Upload Users และเพิ่มคอลัมน์ cohort
 ```
+![Users List](images/screenshots/18-users-list.png)
+![Cohort Assign](images/screenshots/19-cohort-assign.png)
+![Users with Cohort](images/screenshots/20-users-with-cohort.png)
 ---
 
 
@@ -934,29 +916,33 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+Docker Image เป็นไฟล์ที่อ่านได้อย่างเดียว (Read-only) ที่บรรจุ OS และ Lib ทุกอย่างไว้
+Docker Container เป็น Instance ที่ถูกสร้างมาจาก Image มีการทำงานจริงและเก็บข้อมูลชั่วคราวได้
 ```
 
 **2. จากสถาปัตยกรรมในการทดลอง มี Container กี่ตัว? แต่ละตัวมีหน้าที่อะไร?**
 
 คำตอบ:
 ```
-
+moodle_db (MariaDB) ทำหน้าที่เป็น Database
+moodle_app (Moodle) หน้าที่เป็น Web Server
 ```
 
 **3. จากการทดลองมีการจัดการ Volume แบบใด มีข้อดีข้อเสียอย่างไร?**
 
 คำตอบ:
 ```
-
+เป็นการใช้ Named Volumes (db_data และ moodledata)
+ข้อดีคือ ข้อมูลไม่หายเมื่อลบ Container, Docker จัดการพื้นที่เก็บข้อมูลให้เองโดยอัตโนมัติ
+ข้อเสียคือ เข้าถึงไฟล์จากฝั่ง Host ได้ยาก
 ```
 
 **4. Network ใน Docker Compose ทำหน้าที่อะไร? Container สื่อสารกันอย่างไร?**
 
 คำตอบ:
 ```
-
-
+Virtual Network เชื่อม Container เข้าด้วยกัน
+สื่อสารกันผ่าน Service Name (moodle คุยกับ db)
 ```
 
 
@@ -964,22 +950,22 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+ใช้กำหนด ลำดับการเริ่มทำงาน ต้องรัน db ให้เสร็จ ถึงจะเริ่มรัน moodle ได้
 ```
 
 **6. ถ้าต้องการเปลี่ยน Port ของ Moodle  เป็น 9000 ต้องแก้ไขส่วนใดของไฟล์?**
 
 คำตอบ:
 ```
-
-
+ports:9000:80
+โดยแก้ใน ใน Service moodle
 ```
 
 **7. Environment Variables `MOODLE_DB_HOST=db` หมายความว่าอย่างไร? ทำไมไม่ใช้ `localhost`?**
 
 คำตอบ:
 ```
-
+Moodle ไปเชื่อมต่อกับเครื่องที่ชื่อ db(ตรงกับService) และที่ไม่ใช่localhost เพราะ localhost ของ Moodle หมายถึงตัวมันเอง ซึ่งไม่มี Database รันอยู่ข้างใน
 ```
 
 
@@ -987,21 +973,19 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+ข้อดีคือ ติดตั้งคำสั่งเดียวจบ, ย้ายเครื่องสะดวก , ตัดปัญหา Library
+ข้อเสียคือ กินทรัพยากรเครื่องมากกว่า
 ```
 
 **9. ถ้าต้องการเพิ่ม Container Redis สำหรับ Caching จะต้องแก้ไข docker-compose.yml อย่างไร?**
 
 คำตอบ (เขียน YAML):
 ```yaml
-
-
-
-
-
-
-
-
+redis:
+    image: redis:alpine
+    container_name: moodle_redis
+    networks:
+      - moodle_network
 ```
 
 
@@ -1010,18 +994,17 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 คำตอบ:
 ```
 วิธีตรวจสอบ:
-
-
+docker logs moodle_app (ดู Error)
+docker ps (Check Status)
 วิธีแก้ไข:
-
+เช็ค MYSQL_PASSWORD ตรงกับ MOODLE_DB_PASSWORD เช็คว่าทั้งคู่ใช้ networks วงเดียวกัน
 ```
 
 **11. ถ้ารัน `docker-compose down -v` จะเกิดอะไรขึ้นกับข้อมูล?**
 
 คำตอบ:
 ```
-
-
+ข้อมูลหาย -v จะทำให้Docker ลบ Named Volumes ทั้งหมด
 ```
 
 ---
