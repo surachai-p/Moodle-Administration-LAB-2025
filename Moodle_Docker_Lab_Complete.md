@@ -430,6 +430,8 @@ docker volume inspect moodle-docker_moodledata
 ```
 
 **บันทึกผลการทดลอง 5:**
+<img width="1042" height="554" alt="Screenshot 2026-02-06 101031" src="https://github.com/user-attachments/assets/3afb33c1-9969-49bc-80f1-9ad1b24bca6f" />
+
 ```bash
  รูปผลการรัน ตรวจสอบ volume
 ```
@@ -481,6 +483,8 @@ docker volume inspect moodle-docker_moodledata
 หลังจากบันทึกแล้ว ระบบจะแสดงหน้า **Dashboard** ของระบบ
 
 **บันทึกผลการทดลอง 6:**
+<img width="1893" height="859" alt="Screenshot 2026-02-06 105004" src="https://github.com/user-attachments/assets/4df7c95a-9e1b-4a4b-ba2e-795c535445b4" />
+
 ```bash
  รูปหน้า Dashboard 
 ```
