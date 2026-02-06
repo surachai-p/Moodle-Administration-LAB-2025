@@ -952,28 +952,32 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+Docker Image คือไฟล์ต้นแบบที่ใช้สร้าง Container ส่วน Docker Container คือโปรแกรมที่ถูกสร้างจาก Image และสามารถรันได้จริง
 ```
 
 **2. จากสถาปัตยกรรมในการทดลอง มี Container กี่ตัว? แต่ละตัวมีหน้าที่อะไร?**
 
 คำตอบ:
 ```
+moodle_app ทำหน้าที่เป็น Web Server ให้บริการระบบ Moodle
 
+moodle_db ทำหน้าที่เป็น Database Server สำหรับเก็บข้อมูล
 ```
 
 **3. จากการทดลองมีการจัดการ Volume แบบใด มีข้อดีข้อเสียอย่างไร?**
 
 คำตอบ:
 ```
+ข้อดี: ข้อมูลไม่สูญหายแม้ลบ Container และสามารถสำรองข้อมูลได้
 
+ข้อเสีย: ใช้พื้นที่จัดเก็บเพิ่ม และต้องจัดการ Volume เพิ่ม
 ```
 
 **4. Network ใน Docker Compose ทำหน้าที่อะไร? Container สื่อสารกันอย่างไร?**
 
 คำตอบ:
 ```
-
+Network ทำหน้าที่เชื่อม Container ต่าง ๆ ให้สามารถติดต่อสื่อสารกันได้ผ่านชื่อ service แทน IP Address
 
 ```
 
@@ -982,14 +986,14 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+ใช้กำหนดลำดับการเริ่มทำงานของ Container เพื่อให้ Database เริ่มก่อน Web Server ลดปัญหาการเชื่อมต่อผิดพลาด
 ```
 
 **6. ถ้าต้องการเปลี่ยน Port ของ Moodle  เป็น 9000 ต้องแก้ไขส่วนใดของไฟล์?**
 
 คำตอบ:
 ```
-
+"9000:80"
 
 ```
 
@@ -997,7 +1001,7 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+หมายถึง ให้ Moodle เชื่อมต่อฐานข้อมูลผ่าน service db และไม่ใช้ localhost เพราะอยู่คนละ Container กัน
 ```
 
 
@@ -1005,14 +1009,15 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+Docker ติดตั้งง่าย รวดเร็ว ย้ายระบบสะดวก ส่วนการติดตั้งปกติต้องตั้งค่าระบบหลายขั้นตอนและใช้เวลานานกว่า
 ```
 
 **9. ถ้าต้องการเพิ่ม Container Redis สำหรับ Caching จะต้องแก้ไข docker-compose.yml อย่างไร?**
 
 คำตอบ (เขียน YAML):
 ```yaml
-
+redis:
+  image: redis:latest
 
 
 
@@ -1028,17 +1033,17 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 คำตอบ:
 ```
 วิธีตรวจสอบ:
-
+ใช้ docker ps และ docker logs
 
 วิธีแก้ไข:
-
+ตรวจชื่อ service, ค่า environment และ restart container
 ```
 
 **11. ถ้ารัน `docker-compose down -v` จะเกิดอะไรขึ้นกับข้อมูล?**
 
 คำตอบ:
 ```
-
+Container และ Volume ถูกลบ ทำให้ข้อมูลในระบบสูญหายทั้งหมด
 
 ```
 
