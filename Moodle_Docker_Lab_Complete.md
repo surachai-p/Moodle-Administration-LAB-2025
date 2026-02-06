@@ -608,8 +608,8 @@ h1 {
 - Favicon: 32x32 px (ICO/PNG)
 
 **บันทึกผลการทดลอง 6-1:**
-```bash
- รูป ผลการปรับแต่ง Theme
+<img width="1902" height="974" alt="image" src="https://github.com/user-attachments/assets/3f94d2b8-8ef9-45ae-9a0b-665b23da6544" />
+
 ```
 ---
 
