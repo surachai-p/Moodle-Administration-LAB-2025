@@ -803,8 +803,8 @@ student003,Pass@123,สมศักดิ์,ขยัน,student003@example.com
 6. Preview และยืนยัน
 
 **บันทึกผลการทดลอง 10:**
-```bash
- รูปหน้า ผลการ Upload Users
+<img width="1918" height="971" alt="image" src="https://github.com/user-attachments/assets/e0a57fa7-0e47-4477-b5fd-f6eb598dd541" />
+
 ```
 
 #### 6.4.3 การลงทะเบียนเรียน (Enrolment)
