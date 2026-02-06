@@ -19,6 +19,7 @@ services:
     ports:
       - "80:80" # กรณีที่เครื่องมี Web Server ที่ใช้งาน Port 80 อยู่แล้ว ให้เปลี่ยน Port เป็น "8080:80"  และการใช้งานต้องระบุ Port เป็น //localhost:8080
     environment:
+      MOODLE_URL: http://localhost
       MOODLE_DB_TYPE: mariadb
       MOODLE_DB_HOST: db # ระบุเป็น db เพราะให้เชื่อมต่อไปยัง container name ที่ชื่อ db
       MOODLE_DB_NAME: moodle
