@@ -466,8 +466,8 @@ docker volume inspect moodle-docker_moodledata
 หลังจากบันทึกแล้ว ระบบจะแสดงหน้า **Dashboard** ของระบบ
 
 **บันทึกผลการทดลอง 6:**
-```bash
- รูปหน้า Dashboard 
+
+<img width="1919" height="1078" alt="image" src="https://github.com/user-attachments/assets/37d12e03-87de-444e-b752-48d4fb5f6dd6" />
 ```
 
 ---
@@ -610,8 +610,8 @@ h1 {
 - Favicon: 32x32 px (ICO/PNG)
 
 **บันทึกผลการทดลอง 6-1:**
-```bash
- รูป ผลการปรับแต่ง Theme
+
+<img width="1903" height="1010" alt="image" src="https://github.com/user-attachments/assets/d1e4b051-d068-4360-9498-f59b3de2c294" />
 ```
 ---
 
@@ -718,7 +718,8 @@ Learning outcomes:
 4. คลิก **Save and display**
 
 **บันทึกผลการทดลอง 8:**
-```bash
+<img width="1919" height="893" alt="image" src="https://github.com/user-attachments/assets/784d4d5a-2fc5-43d1-a4fc-95bd564bf9c8" />
+
  รูปหน้าผลลัพธ์การสร้างรายวิชา
 ```
 
@@ -774,13 +775,13 @@ Learning outcomes:
 **Interests:**
 ```
 Programming, Python, Data Science
-```
+
 
 3. คลิก **Create user**
 
 **บันทึกผลการทดลอง 9:**
-```bash
- รูปหน้า ผลการสร้าง User ใหม่
+`
+<img width="1919" height="1072" alt="image" src="https://github.com/user-attachments/assets/fbfa426a-55eb-4598-b17c-87151b078fae" />
 ```
 
 **วิธีที่ 2: Upload Users (CSV)**
@@ -802,8 +803,8 @@ student003,Pass@123,สมศักดิ์,ขยัน,student003@example.com
 6. Preview และยืนยัน
 
 **บันทึกผลการทดลอง 10:**
-```bash
- รูปหน้า ผลการ Upload Users
+<img width="1104" height="504" alt="image" src="https://github.com/user-attachments/assets/969d0b8c-a698-4f99-b9ef-41658a0781f7" />
+
 ```
 
 #### 6.4.3 การลงทะเบียนเรียน (Enrolment)
