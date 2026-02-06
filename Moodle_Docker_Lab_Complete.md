@@ -330,7 +330,7 @@ docker pull mariadb:latest
 
 **บันทึกผลการทดลอง 1:**
 
-![]("https://github.com/user-attachments/assets/767e712b-aae1-4704-84b6-d2d57b7604ac")
+![1](https://github.com/user-attachments/assets/767e712b-aae1-4704-84b6-d2d57b7604ac)
 
 #### 2.2 รัน Docker Compose
 
