@@ -479,6 +479,8 @@ docker volume inspect moodle-docker_moodledata
 ```bash
  รูปหน้า Dashboard 
 ```
+<img width="1709" height="943" alt="ภาพถ่ายหน้าจอ 2569-02-06 เวลา 10 37 51" src="https://github.com/user-attachments/assets/1de9e6e3-b94a-4572-84b7-05c8e2ef67a4" />
+
 
 ---
 
