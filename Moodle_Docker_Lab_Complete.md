@@ -381,6 +381,7 @@ moodle_db     docker-entrypoint.sh mariadbd    Up      3306/tcp
 ```bash
  รูปผลการรัน docker-compose ps
 ```
+<img width="1071" height="83" alt="image" src="https://github.com/user-attachments/assets/994bdfeb-4dc4-49ec-a1c0-77fc93976525" />
 
 
 #### 2.4 ตรวจสอบ Logs
@@ -410,6 +411,8 @@ docker start moodle_app
 ```bash
  รูปผลการรัน docker-compose logs 
 ```
+<img width="1609" height="574" alt="image" src="https://github.com/user-attachments/assets/bca97813-c3d7-4eb8-a00f-fd66dc7d8dc1" />
+
 
 #### 2.5 ตรวจสอบ Network และ Volumes
 
