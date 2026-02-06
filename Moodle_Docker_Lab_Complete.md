@@ -350,6 +350,8 @@ Creating moodle_app ... done
 ```
 
 **บันทึกผลการทดลอง 2:**
+<img width="1105" height="175" alt="image" src="https://github.com/user-attachments/assets/69867a47-cb36-47d7-a161-a09c6d93aa00" />
+
 ```bash
  รูปผลการรัน docker-compose ที่สมบูรณ์ 
 ```
