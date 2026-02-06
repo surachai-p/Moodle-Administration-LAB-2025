@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Docker volumes (if mounted locally)
+db_data/
+moodledata/
+
+# Backup files
+*.sql
+*.bak
+*_backup/
+
+# Logs
+*.log
+
+# Cursor/AI
+.cursor/

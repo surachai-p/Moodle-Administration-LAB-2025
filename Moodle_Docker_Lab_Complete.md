@@ -41,7 +41,7 @@
 - **Fast Deployment** - เริ่มต้นและหยุดได้รวดเร็ว
 
 #### 2.1.2 Container vs Virtual Machine
-![Virtual Machine and Container](images/vs_container.png)
+![Virtual Machine and Container](images/diagrams/vs_container.png)
 
 
 #### 2.1.3 Docker Components
@@ -123,7 +123,7 @@ Container A (moodle_app)  --[Bridge Network]--> Container B (moodle_db)
 - รองรับหลายภาษา
 
 #### 2.5.2 Moodle System Architecture
-![Moodle System Architecture](images/moodle_architecture.png)
+![Moodle System Architecture](images/diagrams/moodle_architecture.png)
 
 
 ### 2.5 ระบบที่ใช้ในการทดลอง: lthub/moodle
@@ -151,11 +151,11 @@ Container A (moodle_app)  --[Bridge Network]--> Container B (moodle_db)
 
 ### 3.1 System Architecture Diagram
 
-![System Architecture](images/architecture3.png)
+![System Architecture](images/diagrams/architecture3.png)
 
 
 ### 3.2 Volume และ Data Persistence
-![Volume and Data Persistence](images/volumedata.jpg)
+![Volume and Data Persistence](images/diagrams/volumedata.jpg)
 
 
 ### 3.3 Component Interaction Matrix
@@ -325,8 +325,8 @@ docker pull mariadb:latest
 ```
 
 **บันทึกผลการทดลอง 1:**
-![alt text](<Screenshot 2569-02-06 at 09.10.05.png>)
-![alt text](<Screenshot 2569-02-06 at 09.10.54.png>)
+![Docker Pull lthub/moodle](images/screenshots/01-docker-pull-lthub.png)
+![Docker Pull MariaDB](images/screenshots/02-docker-pull-mariadb.png)
 #### 2.2 รัน Docker Compose
 
 ```bash
@@ -348,8 +348,8 @@ Creating moodle_app ... done
 
 **บันทึกผลการทดลอง 2:**
 
-![alt text](<Screenshot 2569-02-06 at 09.11.23.png>)
-![alt text](<Screenshot 2569-02-06 at 09.13.13.png>)
+![Docker Compose Up](images/screenshots/03-docker-compose-up.png)
+![Docker Networks](images/screenshots/04-docker-compose-networks.png)
 #### 2.3 ตรวจสอบสถานะ Containers
 
 ```bash
@@ -368,7 +368,7 @@ moodle_db     docker-entrypoint.sh mariadbd    Up      3306/tcp
 - **Ports** = Port mapping ที่ใช้งาน
   
 **บันทึกผลการทดลอง 3:**
-![alt text](<Screenshot 2569-02-06 at 09.15.10.png>)
+![Docker Compose PS](images/screenshots/05-docker-compose-ps.png)
 
 #### 2.4 ตรวจสอบ Logs
 
@@ -394,7 +394,7 @@ docker start moodle_app
 
 ```
 **บันทึกผลการทดลอง 4:**
-![alt text](<Screenshot 2569-02-06 at 09.15.38.png>)
+![Docker Logs](images/screenshots/06-docker-logs.png)
 #### 2.5 ตรวจสอบ Network และ Volumes
 
 ```bash
@@ -409,9 +409,9 @@ docker volume inspect moodle-docker_moodledata
 
 **บันทึกผลการทดลอง 5:**
 
-![alt text](<Screenshot 2569-02-06 at 09.18.10.png>)
-![alt text](<Screenshot 2569-02-06 at 09.18.46.png>)
-![alt text](<Screenshot 2569-02-06 at 09.18.59.png>)
+![Network LS](images/screenshots/07-network-ls.png)
+![Volume LS](images/screenshots/08-volume-ls.png)
+![Volume Inspect](images/screenshots/09-volume-inspect.png)
 ---
 
 ### ขั้นตอนที่ 3: ติดตั้ง Moodle ผ่าน Web Interface
@@ -459,7 +459,7 @@ docker volume inspect moodle-docker_moodledata
 หลังจากบันทึกแล้ว ระบบจะแสดงหน้า **Dashboard** ของระบบ
 
 **บันทึกผลการทดลอง 6:**
-![alt text](screencapture-localhost-my-2026-02-06-09_43_54.png)
+![Moodle Dashboard](images/screenshots/10-moodle-dashboard.png)
 ---
 
 ## 6. การตั้งค่าและดูแลระบบ
@@ -599,8 +599,8 @@ h1 {
 - Favicon: 32x32 px (ICO/PNG)
 
 **บันทึกผลการทดลอง 6-1:**
-![alt text](screencapture-localhost-2026-02-06-09_57_02.png)
-![alt text](screencapture-localhost-admin-settings-php-2026-02-06-09_56_53.png)
+![Site Home](images/screenshots/11-site-home.png)
+![Site Settings](images/screenshots/12-site-settings.png)
 ---
 
 ### 6.2 การจัดการ Course Categories และ Courses
@@ -634,7 +634,7 @@ Course Category ใช้จัดกลุ่มรายวิชาตาม�
 **สร้างกลุ่มวิชาเพิ่มเติม โดยใช้กลุ่มสาระที่มีของ สพฐ.:**
 
 **บันทึกผลการทดลอง 7:**
-![alt text](screencapture-localhost-course-management-php-2026-02-06-10_08_35.png)
+![Course Categories](images/screenshots/13-course-categories.png)
 
 #### 6.2.2 สร้าง Course (รายวิชา)
 
@@ -704,7 +704,7 @@ Learning outcomes:
 4. คลิก **Save and display**
 
 **บันทึกผลการทดลอง 8:**
-![alt text](<Screenshot 2569-02-06 at 10.14.44.png>)
+![Course Created](images/screenshots/14-course-created.png)
 ---
 
 ### 6.4 การจัดการผู้ใช้งาน (User Management)
@@ -762,7 +762,7 @@ Programming, Python, Data Science
 3. คลิก **Create user**
 
 **บันทึกผลการทดลอง 9:**
-![alt text](<Screenshot 2569-02-06 at 10.23.57-1.png>)
+![User Created](images/screenshots/15-user-created.png)
 **วิธีที่ 2: Upload Users (CSV)**
 
 1. ไปที่ **Site administration → Users → Accounts → Upload users**
@@ -782,8 +782,8 @@ student003,Pass@123,สมศักดิ์,ขยัน,student003@example.com
 6. Preview และยืนยัน
 
 **บันทึกผลการทดลอง 10:**
-![alt text](<Screenshot 2569-02-06 at 10.34.09.png>)
-[User.csv](users.csv)
+![Upload Users](images/screenshots/17-upload-users.png)
+[users.csv](users.csv)
 
 #### 6.4.3 การลงทะเบียนเรียน (Enrolment)
 
@@ -845,9 +845,9 @@ Cohort = กลุ่มผู้ใช้ (เช่น ม.1, ม.2 หรื�
 ```bash
  รูปหน้า ผลการ Upload Users และเพิ่มคอลัมน์ cohort
 ```
-![alt text](screencapture-localhost-user-index-php-2026-02-06-10_38_44.png)
-![alt text](screencapture-localhost-cohort-assign-php-2026-02-06-10_40_40.png)
-![alt text](screencapture-localhost-user-index-php-2026-02-06-10_41_32.png)
+![Users List](images/screenshots/18-users-list.png)
+![Cohort Assign](images/screenshots/19-cohort-assign.png)
+![Users with Cohort](images/screenshots/20-users-with-cohort.png)
 ---
 
 
