@@ -646,6 +646,7 @@ Course Category ใช้จัดกลุ่มรายวิชาตาม�
 
 **บันทึกผลการทดลอง 7:**
 <img width="951" height="961" alt="image" src="https://github.com/user-attachments/assets/3a7b1434-0c49-4354-8483-154528800098" />
+<img width="1919" height="1000" alt="image" src="https://github.com/user-attachments/assets/daf7d4ff-c5f0-4c0b-9e88-debbceca07d0" />
 
 
 #### 6.2.2 สร้าง Course (รายวิชา)
