@@ -364,6 +364,7 @@ Creating moodle_app ... done
 ```bash
 docker-compose ps
 ```
+<img width="1069" height="120" alt="image" src="https://github.com/user-attachments/assets/55ba1bdd-ca99-48b6-8b94-6231ae3fd9da" />
 
 **ผลลัพธ์ควรแสดงดังรูป:**
 ```
