@@ -798,9 +798,8 @@ Programming, Python, Data Science
 3. คลิก **Create user**
 
 **บันทึกผลการทดลอง 9:**
-```bash
- รูปหน้า ผลการสร้าง User ใหม่
-```
+
+<img width="1855" height="894" alt="image" src="https://github.com/user-attachments/assets/d586fddb-506c-4e38-b1f2-279737bbfa79" />
 
 **วิธีที่ 2: Upload Users (CSV)**
 
