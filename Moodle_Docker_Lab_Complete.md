@@ -780,10 +780,7 @@ student003,Pass@123,สมศักดิ์,ขยัน,student003@example.com
 6. Preview และยืนยัน
 
 **บันทึกผลการทดลอง 10:**
-```bash
- รูปหน้า ผลการ Upload Users
-```
-
+<img width="1919" height="906" alt="image" src="https://github.com/user-attachments/assets/64fc4575-a1c3-4192-9a9b-ef8e4c6a21a1" />
 #### 6.4.3 การลงทะเบียนเรียน (Enrolment)
 
 **วิธีที่ 1: Manual Enrolment**
