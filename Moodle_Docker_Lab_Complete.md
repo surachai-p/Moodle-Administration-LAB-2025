@@ -952,6 +952,15 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+Docker Image คือ แม่แบบ (Template) ที่รวมทุกอย่างที่จำเป็นต่อการรันโปรแกรม
+เช่น ระบบปฏิบัติการย่อย ไลบรารี และตัวโปรแกรมเอง (เป็นไฟล์แบบอ่านอย่างเดียว)
+
+Docker Container คือ การนำ Image มารันให้ทำงานจริง
+เปรียบเหมือน Image = พิมพ์เขียว, Container = บ้านที่สร้างเสร็จแล้วและมีคนอยู่
+
+ตัวอย่าง:
+- Image: moodle:latest
+- Container: moodle_app (ที่รันจาก image moodle)
 
 ```
 
@@ -959,13 +968,30 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+มี 2 Container
+1) moodle_app
+   - ทำหน้าที่เป็น Web Server และ Moodle Application
+   - ให้ผู้ใช้เข้าใช้งานผ่าน Web Browser
 
+2) db (MariaDB)
+   - ทำหน้าที่เป็น Database Server
+   - เก็บข้อมูลผู้ใช้ รายวิชา คะแนน และเนื้อหาใน Moodle
 ```
 
 **3. จากการทดลองมีการจัดการ Volume แบบใด มีข้อดีข้อเสียอย่างไร?**
 
 คำตอบ:
 ```
+ใช้ Named Volume
+
+ข้อดี:
+- ข้อมูลไม่หายเมื่อ Container ถูกลบหรือรีสตาร์ท
+- แยกข้อมูลออกจากตัว Container
+- สำรองและย้ายข้อมูลได้ง่าย
+
+ข้อเสีย:
+- ถ้าใช้ docker-compose down -v ข้อมูลจะถูกลบ
+- ต้องบริหารจัดการ Volume เพิ่มเติม
 
 ```
 
@@ -973,7 +999,11 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+Docker Compose จะสร้าง Network ให้โดยอัตโนมัติ
+เพื่อให้ Container ภายใน Project เดียวกันสื่อสารกันได้
 
+Container สื่อสารกันผ่านชื่อ Service
+เช่น moodle_app ติดต่อ Database ผ่านชื่อ "db" ที่พอร์ต 3306
 
 ```
 
@@ -982,14 +1012,28 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+depends_on ใช้กำหนดลำดับการเริ่มทำงานของ Container
 
+เช่น:
+moodle_app depends_on db
+หมายความว่า Docker จะเริ่ม Container db ก่อน moodle_app
+
+ช่วยลดปัญหา Application เริ่มทำงานก่อน Database พร้อมใช้งาน
 ```
 
 **6. ถ้าต้องการเปลี่ยน Port ของ Moodle  เป็น 9000 ต้องแก้ไขส่วนใดของไฟล์?**
 
 คำตอบ:
 ```
+ต้องแก้ไขส่วน ports ของ service moodle_app
 
+จาก:
+ports:
+  - "8080:80"
+
+เป็น:
+ports:
+  - "9000:80"
 
 ```
 
@@ -997,7 +1041,13 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+MOODLE_DB_HOST=db หมายถึง
+ให้ Moodle เชื่อมต่อ Database ที่ชื่อ Service ว่า "db"
 
+ไม่ใช้ localhost เพราะ:
+- localhost ภายใน Container หมายถึงตัว Container เอง
+- Database อยู่คนละ Container
+- Docker Network ใช้ชื่อ Service แทน IP หรือ localhost
 ```
 
 
@@ -1005,21 +1055,39 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+Docker:
+ข้อดี:
+- ติดตั้งง่ายและรวดเร็ว
+- ไม่กระทบระบบหลัก
+- ย้ายเครื่องหรือสำรองข้อมูลได้ง่าย
+- เหมาะกับการทดลองและพัฒนา
 
+ข้อเสีย:
+- ต้องเข้าใจ Docker เพิ่มเติม
+- Debug อาจซับซ้อนกว่า
+
+ติดตั้งแบบปกติ:
+ข้อดี:
+- ควบคุมระบบได้ละเอียด
+- เหมาะกับ Production ระยะยาว
+
+ข้อเสีย:
+- ติดตั้งยาก
+- อาจกระทบระบบอื่นในเครื่อง
+- ย้ายระบบทำได้ยาก
 ```
 
 **9. ถ้าต้องการเพิ่ม Container Redis สำหรับ Caching จะต้องแก้ไข docker-compose.yml อย่างไร?**
 
 คำตอบ (เขียน YAML):
 ```yaml
-
-
-
-
-
-
-
-
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
 ```
 
 
@@ -1028,18 +1096,28 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 คำตอบ:
 ```
 วิธีตรวจสอบ:
-
+- ตรวจสอบ logs ด้วยคำสั่ง docker-compose logs moodle_app
+- ตรวจสอบว่า Container db รันอยู่หรือไม่
+- ตรวจสอบค่า Environment Variables ของ Database
+- ตรวจสอบ Network และชื่อ Service
 
 วิธีแก้ไข:
-
+- แก้ไขค่า MOODLE_DB_HOST ให้ตรงกับชื่อ service
+- เพิ่ม depends_on
+- รีสตาร์ท Container ด้วย docker-compose up -d
 ```
 
 **11. ถ้ารัน `docker-compose down -v` จะเกิดอะไรขึ้นกับข้อมูล?**
 
 คำตอบ:
 ```
+- Container ทั้งหมดจะถูกลบ
+- Network จะถูกลบ
+- Volume ทั้งหมดจะถูกลบ
 
-
+ผลคือ:
+ข้อมูลใน Database และ Moodle จะหายทั้งหมด
+เหมือนติดตั้งระบบใหม่ตั้งแต่ต้น
 ```
 
 ---
