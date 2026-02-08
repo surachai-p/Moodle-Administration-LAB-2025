@@ -714,11 +714,7 @@ Learning outcomes:
 4. คลิก **Save and display**
 
 **บันทึกผลการทดลอง 8:**
-```bash
- รูปหน้าผลลัพธ์การสร้างรายวิชา
-```
-
----
+<img width="1906" height="1068" alt="image" src="https://github.com/user-attachments/assets/0f1ea1c3-e839-4d1a-aac8-68c562dc1bd4" />
 
 ### 6.4 การจัดการผู้ใช้งาน (User Management)
 
@@ -775,9 +771,8 @@ Programming, Python, Data Science
 3. คลิก **Create user**
 
 **บันทึกผลการทดลอง 9:**
-```bash
- รูปหน้า ผลการสร้าง User ใหม่
-```
+<img width="1907" height="1068" alt="image" src="https://github.com/user-attachments/assets/a28995eb-3746-4254-bc37-01e0c82be2fe" />
+
 
 **วิธีที่ 2: Upload Users (CSV)**
 
