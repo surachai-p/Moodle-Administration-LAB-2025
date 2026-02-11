@@ -740,7 +740,7 @@ Learning outcomes:
 <img width="1919" height="1018" alt="image" src="https://github.com/user-attachments/assets/02adce90-421d-4534-80e3-8d846ca8bd5e" />
 
 
-```
+``
 
 --
 
@@ -792,16 +792,19 @@ Learning outcomes:
 | Country | Thailand |
 
 **Interests:**
-```
+`
 Programming, Python, Data Science
-```
+``
 
 3. คลิก **Create user**
 
 **บันทึกผลการทดลอง 9:**
-```bash
+``bash
  รูปหน้า ผลการสร้าง User ใหม่
-```
+<img width="1919" height="1012" alt="image" src="https://github.com/user-attachments/assets/2c23cb1f-dcf3-4005-8083-dcb0bd6e8979" />
+
+
+``
 
 **วิธีที่ 2: Upload Users (CSV)**
 
@@ -824,6 +827,7 @@ student003,Pass@123,สมศักดิ์,ขยัน,student003@example.com
 **บันทึกผลการทดลอง 10:**
 ```bash
  รูปหน้า ผลการ Upload Users
+
 ```
 
 #### 6.4.3 การลงทะเบียนเรียน (Enrolment)
