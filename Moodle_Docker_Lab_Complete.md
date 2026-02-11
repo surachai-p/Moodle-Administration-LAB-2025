@@ -703,7 +703,7 @@ Learning outcomes:
 1. ระบุผลการเรียนรู้ที่คาดหวังของรายวิชา
 2. ระบุผลการเรียนรู้ที่คาดหวังของรายวิชา
 3. ระบุผลการเรียนรู้ที่คาดหวังของรายวิชา
-```
+``
 
 **Tab: Course format**
 
@@ -735,11 +735,14 @@ Learning outcomes:
 4. คลิก **Save and display**
 
 **บันทึกผลการทดลอง 8:**
-```bash
+``bash
  รูปหน้าผลลัพธ์การสร้างรายวิชา
+<img width="1919" height="1018" alt="image" src="https://github.com/user-attachments/assets/02adce90-421d-4534-80e3-8d846ca8bd5e" />
+
+
 ```
 
----
+--
 
 ### 6.4 การจัดการผู้ใช้งาน (User Management)
 
