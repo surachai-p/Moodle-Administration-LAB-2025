@@ -964,29 +964,44 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+Docker Image คือ ไฟล์ต้นแบบ (Read-only Template) ที่ใช้สร้าง Container
+ภายใน Image จะมีทุกอย่างที่จำเป็น
+Docker Container คือ สิ่งที่ถูกสร้างจาก Image และกำลังทำงานอยู่จริง
+สร้างและรัน Container
+docker run -d -p 8080:80 nginx
 ```
 
 **2. จากสถาปัตยกรรมในการทดลอง มี Container กี่ตัว? แต่ละตัวมีหน้าที่อะไร?**
 
-คำตอบ:
+คำตอบ: 
 ```
-
+มี Container ทั้งหมด 2 ตัว ตามที่กำหนดใน services ของ docker-compose.yml Container: moodle_db เก็บข้อมูลผู้ใช้   เก็บคะแนน   เก็บคอร์สเรียน   เก็บเนื้อหาทั้งหมดของ Moodle จัดการคำสั่ง SQL
+Container: moodle_app เป็น Web Application Server
+ทำหน้าที่:
+แสดงหน้าเว็บ Moodle
+รับคำสั่งจากผู้ใช้ผ่าน Browser
+เชื่อมต่อไปยังฐานข้อมูล (db)
+ประมวลผลระบบเรียนออนไลน์
 ```
 
 **3. จากการทดลองมีการจัดการ Volume แบบใด มีข้อดีข้อเสียอย่างไร?**
 
 คำตอบ:
 ```
-
+Named Volume
+เป็น Volume ที่ Docker จัดการให้เอง
+ไม่ได้ระบุ path บนเครื่อง host โดยตรง
 ```
 
 **4. Network ใน Docker Compose ทำหน้าที่อะไร? Container สื่อสารกันอย่างไร?**
 
 คำตอบ:
 ```
-
-
+เชื่อม Container เข้าด้วยกัน
+ทำให้ container ต่าง ๆ อยู่ใน "เครือข่ายเสมือนเดียวกัน"
+อยู่ใน network ชื่อ moodle_network
+มีระบบ DNS ภายในอัตโนมัติ
+MOODLE_DB_HOST: db
 ```
 
 
@@ -994,6 +1009,8 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+depends_on ใช้กำหนดว่า
+Service นี้ต้องรอให้อีก Service เริ่มก่อน
 
 ```
 
@@ -1001,7 +1018,11 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+แก้ ส่วน ports:
+  - "80:80"
+เป็น
+ports:
+  - "9000:80"
 
 ```
 
@@ -1009,7 +1030,9 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+ให้ Moodle เชื่อมต่อฐานข้อมูล
+โดยใช้ hostname ชื่อ db
+ซึ่งก็คือชื่อ service ของ MariaDB ในไฟล์ docker-compose
 ```
 
 
@@ -1017,6 +1040,28 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+ติดตั้งด้วย Docker
+ช้ docker compose up ก็พร้อมใช้งาน
+Web Server, PHP, Database แยกเป็น container
+เอาไฟล์ compose ไป run ที่อื่นได้เลย
+เปลี่ยน image version ได้ทันที
+ข้อเสีย
+ต้องมีความรู้ Docker
+Debug บางอย่างยากกว่า (ต้องเข้า container)
+ใช้ resource มากกว่าเล็กน้อย
+บางครั้ง config ลึก ๆ ปรับยากกว่า native
+
+Moodle
+ควบคุมระบบได้ละเอียด
+ปรับแต่ง Apache / PHP / MySQL ได้เต็มที่
+ใช้ทรัพยากรน้อยกว่า
+เหมาะกับ Production ขนาดใหญ่ที่ต้อง optimize เอง
+ข้อเสีย
+ติดตั้งหลายขั้นตอน (LAMP stack)
+เสี่ยง dependency conflict
+ย้ายเครื่องยาก
+ถ้าพัง แก้ไขยุ่งยาก
+
 
 ```
 
@@ -1024,13 +1069,29 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ (เขียน YAML):
 ```yaml
+เพิ่ม service redis
+redis:
+    image: redis:latest
+    container_name: moodle_redis
+    restart: unless-stopped
+    networks:
+      - moodle_network
+เพิ่ม environment ให้ Moodle
+environment:
+      MOODLE_DB_TYPE: mariadb
+      MOODLE_DB_HOST: db
+      MOODLE_DB_NAME: moodle
+      MOODLE_DB_USER: moodleuser
+      MOODLE_DB_PASSWORD: KunaMasor
+      MOODLE_URL: http://localhost
 
-
-
-
-
-
-
+      # เพิ่ม Redis
+      MOODLE_REDIS_HOST: redis
+      MOODLE_REDIS_PORT: 6379
+เพิ่ม depends_on
+depends_on:
+      - db
+      - redis
 
 ```
 
@@ -1040,8 +1101,12 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 คำตอบ:
 ```
 วิธีตรวจสอบ:
-
-
+ตรวจสอบสถานะ Container
+ดู Log ของ Moodle
+ตรวจสอบ Log ของ Database
+ตรวจสอบค่า Environment Variables
+ตรวจสอบ Network
+ทดสอบ Ping จากใน Container
 วิธีแก้ไข:
 
 ```
@@ -1050,10 +1115,13 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+ลยข้อมู
 
 ```
-
+หยุด Container ทั้งหมด
+ลบ Container ทั้งหมด
+ลบ Network ที่สร้างโดย Compose
+ลบ Volume ที่ประกาศในไฟล์ (-v สำคัญมาก)
 ---
 
 ## ภาคผนวก
