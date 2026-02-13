@@ -1,201 +1,46 @@
-# การติดตั้ง Moodle LMS ด้วย Docker Compose (lthub/moodle)
+รูปการทดลองที่ 1
 
-## 📚 ไฟล์ในโฟลเดอร์นี้
+<img width="752" height="471" alt="image" src="https://github.com/user-attachments/assets/e9a7a286-baac-445b-80a8-0507190ee121" />
 
-1. **Moodle_Docker_Lab_Complete.md** - ใบงานการทดลองฉบับสมบูรณ์ (Markdown)
-   - ทฤษฎีและหลักการ
-   - Architecture diagrams
-   - ขั้นตอนการปฏิบัติแบบละเอียด
-   - การตั้งค่า Admin ขั้นสูง
-   - คำถามท้ายใบงาน
+รูปการทดลองที่ 2
 
-2. **docker-compose.yml** - ไฟล์ Docker Compose พร้อมใช้งาน
+ <img width="1338" height="248" alt="image" src="https://github.com/user-attachments/assets/c09cea44-bfb2-49b2-942a-4adc4f8900b1" />
 
-3. **README.md** - คู่มือการใช้งานแบบย่อ (ไฟล์นี้)
+รูปการทดลองที่ 3
 
----
+  <img width="1841" height="177" alt="image" src="https://github.com/user-attachments/assets/4b744d37-fb47-43b1-b428-7730f358b571" />
 
-## ข้อมูลพื้นฐาน
-- **Image**: lthub/moodle:latest
-- **Database**: MariaDB
-- **Port**: 8080 (HTTP)
-- **Platform**: รองรับ Windows, macOS, Linux (AMD64 และ ARM64)
+รูปการทดลองที่ 4
 
-## ขั้นตอนการติดตั้ง
+ <img width="1939" height="921" alt="image" src="https://github.com/user-attachments/assets/23bd8902-9a80-42bb-b237-512be4392470" />
+ 
+รูปการทดลองที่ 5
 
-### 1. เตรียมโฟลเดอร์
-```bash
-mkdir moodle-docker
-cd moodle-docker
-```
+ <img width="1058" height="586" alt="image" src="https://github.com/user-attachments/assets/5b02b1b3-9005-4df7-9498-6049883a1dc1" />
 
-### 2. วาง docker-compose.yml ลงในโฟลเดอร์
+รูปการทดลองที่ 6
 
-### 3. รัน Docker Compose
-```bash
-docker-compose up -d
-```
+ <img width="2558" height="1430" alt="image" src="https://github.com/user-attachments/assets/0a9a4dcb-fe6b-4c3d-8285-df447001f2ee" />
 
-### 4. ตรวจสอบสถานะ
-```bash
-docker-compose ps
-```
+รูปการทดลองที่ 7
 
-### 5. ดู Log
-```bash
-docker-compose logs -f moodle
-```
+ <img width="938" height="620" alt="image" src="https://github.com/user-attachments/assets/3d4db226-d0ca-4a56-a09d-aee6364b9f4a" />
 
-### 6. เข้าสู่หน้าติดตั้ง
-เปิด browser: http://localhost:8080
+รูปการทดลองที่ 8
 
-## การติดตั้งผ่าน Web Interface
+ <img width="923" height="887" alt="image" src="https://github.com/user-attachments/assets/33db15aa-6fea-43c7-ac2f-5db6d79f31a8" />
 
-### ขั้นตอนที่ 1: เลือกภาษา
-- เลือก English หรือภาษาที่ต้องการ
-- คลิก Next
+รูปการทดลองที่ 9
 
-### ขั้นตอนที่ 2: ตั้งค่า Database
-- Database type: **MariaDB**
-- Database host: **db**
-- Database name: **moodle**
-- Database user: **moodleuser**
-- Database password: **moodlepassword**
-- คลิก Next
+  <img width="876" height="506" alt="image" src="https://github.com/user-attachments/assets/a9d130e3-5f1f-4546-8cc0-a77dc1fb043f" />
 
-### ขั้นตอนที่ 3: ยืนยันข้อตกลงลิขสิทธิ์
-- อ่านข้อตกลง GPL
-- คลิก Continue
+รูปการทดลองที่ 10
 
-### ขั้นตอนที่ 4: ตรวจสอบ Server Requirements
-- รอให้ระบบตรวจสอบ
-- ถ้าทุกอย่างเป็นสีเขียว คลิก Continue
+  <img width="929" height="699" alt="image" src="https://github.com/user-attachments/assets/6593d165-3e77-424c-8927-7607401b7ddd" />
 
-### ขั้นตอนที่ 5: ติดตั้งฐานข้อมูล
-- รอให้ระบบติดตั้ง (2-3 นาที)
-- คลิก Continue เมื่อเสร็จ
+รูปการทดลองที่ 11
 
-### ขั้นตอนที่ 6: สร้าง Admin Account
-- Username: **admin** (ค่าเริ่มต้น)
-- Password: **Admin@123** (หรือรหัสผ่านที่ปลอดภัย)
-- Email: **admin@example.com**
-- กรอกข้อมูลส่วนตัว
-- คลิก Update profile
+ <img width="938" height="737" alt="image" src="https://github.com/user-attachments/assets/4cca81c5-1cbb-4897-b79c-e2efd4af1b6e" />
 
-### ขั้นตอนที่ 7: ตั้งค่าเว็บไซต์
-- Site name: **My Moodle Site**
-- Short name: **Moodle**
-- คลิก Save changes
+รูปการทดลองที่ 12
 
-## ข้อมูลการเข้าสู่ระบบ
-
-### Admin
-- URL: http://localhost:8080
-- Username: admin
-- Password: (ที่ตั้งไว้ในขั้นตอนที่ 6)
-
-### Database (ภายใน Docker network)
-- Host: db
-- Database: moodle
-- User: moodleuser
-- Password: moodlepassword
-
-## คำสั่งที่เป็นประโยชน์
-
-```bash
-# หยุด Container
-docker-compose stop
-
-# เริ่ม Container
-docker-compose start
-
-# รีสตาร์ท
-docker-compose restart
-
-# หยุดและลบ Container (เก็บ Volume)
-docker-compose down
-
-# หยุดและลบทั้ง Container และ Volume
-docker-compose down -v
-
-# ดู Log แบบ real-time
-docker-compose logs -f
-
-# เข้าไปใน Moodle container
-docker exec -it moodle_app bash
-
-# เข้าไปใน Database container
-docker exec -it moodle_db mysql -u moodleuser -p
-```
-
-## การแก้ปัญหา
-
-### ปัญหา: ไม่สามารถเข้าถึง localhost:8080 ได้
-**วิธีแก้:**
-- ตรวจสอบว่า Container กำลังรันอยู่: `docker-compose ps`
-- ดู Log: `docker-compose logs moodle`
-- ลอง http://127.0.0.1:8080
-- รีสตาร์ท Container: `docker-compose restart`
-
-### ปัญหา: Database connection error
-**วิธีแก้:**
-- รอให้ Database container เริ่มต้นเสร็จ (ประมาณ 30 วินาที)
-- ตรวจสอบว่าใช้ hostname: **db** (ไม่ใช่ localhost)
-- รีสตาร์ท: `docker-compose restart moodle`
-
-### ปัญหา: Port 8080 ถูกใช้งานอยู่
-**วิธีแก้:**
-- แก้ไข docker-compose.yml เปลี่ยน port:
-  ```yaml
-  ports:
-    - "8081:80"  # หรือ port อื่นที่ว่าง
-  ```
-- รีสตาร์ท: `docker-compose down && docker-compose up -d`
-
-### ปัญหา: Windows - ช้ามาก
-**วิธีแก้:**
-- เปิดใช้งาน WSL 2 ใน Docker Desktop
-- ปิด Antivirus ชั่วคราว
-- เพิ่ม RAM ให้ Docker (Settings > Resources)
-
-### ปัญหา: Mac M1-M4 - Image ไม่รัน
-**วิธีแก้:**
-- lthub/moodle รองรับ ARM64 แล้ว
-- เปิด Rosetta 2 emulation (Docker Desktop > Settings > General)
-
-## ข้อมูลเพิ่มเติม
-
-### Volumes
-- `db_data`: เก็บข้อมูล MariaDB
-- `moodledata`: เก็บไฟล์ Moodle และข้อมูลผู้ใช้
-
-### Network
-- `moodle_network`: Bridge network สำหรับให้ Container สื่อสารกัน
-
-### การสำรองข้อมูล
-```bash
-# Backup Database
-docker exec moodle_db mysqldump -u moodleuser -pmoodlepassword moodle > backup.sql
-
-# Backup Moodledata
-docker cp moodle_app:/moodledata ./moodledata_backup
-
-# Restore Database
-docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup.sql
-```
-
-## ข้อควรระวัง
-
-⚠️ **การใช้งานในสภาพแวดล้อม Production:**
-- เปลี่ยนรหัสผ่านทั้งหมด
-- ตั้งค่า SSL/HTTPS
-- ใช้ Strong password
-- สำรองข้อมูลสม่ำเสำ
-- อัพเดท Image เป็นประจำ
-- ตั้งค่า Firewall
-
-## แหล่งข้อมูลเพิ่มเติม
-
-- lthub/moodle Docker Hub: https://hub.docker.com/r/lthub/moodle
-- Moodle Documentation: https://docs.moodle.org
-- Docker Compose Documentation: https://docs.docker.com/compose/
