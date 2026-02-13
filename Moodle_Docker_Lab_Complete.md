@@ -924,28 +924,34 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+Image: แบบแผน (immutable) ของระบบไฟล์ + metadata — ตัวอย่าง: lthub/moodle:education-4.5.8
+Container: อินสแตนซ์ที่รันจาก Image (มี state/runtime) — ตัวอย่าง: moodle_app ที่กำลังรัน Moodle จาก image ข้างต้น
 ```
 
 **2. จากสถาปัตยกรรมในการทดลอง มี Container กี่ตัว? แต่ละตัวมีหน้าที่อะไร?**
 
 คำตอบ:
 ```
-
+จำนวน: 2 ตัว (ตาม docker-compose.yml)
+moodle_db (db service): ให้บริการฐานข้อมูล (MariaDB)
+moodle_app (moodle service): รัน Moodle (web server / PHP) ซึ่งเชื่อมต่อกับฐานข้อมูล
 ```
 
 **3. จากการทดลองมีการจัดการ Volume แบบใด มีข้อดีข้อเสียอย่างไร?**
 
 คำตอบ:
 ```
-
+ใช้ Named volumes: db_data และ moodledata
+ข้อดี: ข้อมูลคงทนเมื่อคอนเทนเนอร์ถูกลบ, ง่ายต่อการย้าย/สำรอง, Docker จัดการ lifecycle ให้
+ข้อเสีย: เข้าถึงไฟล์จาก host ยากกว่า bind-mount, ต้องสำรอง/restore แยกต่างหาก, การดีบั๊กบางครั้งซับซ้อนกว่า host mount
 ```
 
 **4. Network ใน Docker Compose ทำหน้าที่อะไร? Container สื่อสารกันอย่างไร?**
 
 คำตอบ:
 ```
-
+Docker Compose สร้าง network moodle_network (bridge) เพื่อแยกทราฟิกและให้ DNS ภายในสำหรับ service name
+Container สื่อสารกันโดยใช้ชื่อบริการเป็น hostname (เช่น db) ผ่านเครือข่ายนี้
 
 ```
 
@@ -954,14 +960,15 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+ควบคุมลำดับการสตาร์ท (เริ่ม db ก่อน moodle) แต่ไม่รับประกันว่า DB พร้อมรับการเชื่อมต่อ — หากต้องการรอให้พร้อมจริงควรใช้ healthcheck หรือสคริปต์รอเชื่อมต่อ
 ```
 
 **6. ถ้าต้องการเปลี่ยน Port ของ Moodle  เป็น 9000 ต้องแก้ไขส่วนใดของไฟล์?**
 
 คำตอบ:
 ```
-
+แก้ที่ ports ใน moodle service จาก - "80:80" เป็น - "9000:80"
+(ถ้าต้องการ) ปรับ MOODLE_URL เป็น http://localhost:9000
 
 ```
 
@@ -969,7 +976,8 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+หมายถึงให้เชื่อมต่อไปยังโฮสต์ที่ชื่อ db (service name) ภายใน Docker network
+localhost ภายใน container หมายถึงตัว container เอง ไม่ใช่ service อื่น จึงต้องใช้ชื่อบริการหรือ host/IP ของ DB
 ```
 
 
@@ -977,7 +985,8 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+ข้อดี: ติดตั้ง/ตั้งค่าง่าย, สร้างสภาพแวดล้อมซ้ำได้, แยก service ชัดเจน, อัปเดต/rollback สะดวก
+ข้อเสีย: ต้องเรียนรู้ Docker, การจัดการ persistent data/backup ต้องระมัดระวัง, บางกรณี performance/IO อาจต่างจาก native, การดีบักบางอย่างซับซ้อนกว่า
 ```
 
 **9. ถ้าต้องการเพิ่ม Container Redis สำหรับ Caching จะต้องแก้ไข docker-compose.yml อย่างไร?**
@@ -985,7 +994,17 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 คำตอบ (เขียน YAML):
 ```yaml
 
+redis:
+    image: redis:6-alpine
+    container_name: moodle_redis
+    restart: unless-stopped
+    networks:
+      - moodle_network
+    volumes:
+      - redis_data:/data
 
+volumes:
+  redis_data:
 
 
 
@@ -999,18 +1018,24 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-วิธีตรวจสอบ:
-
-
+ธีตรวจสอบ:
+docker ps / docker-compose ps ดูสถานะ container
+docker-compose logs db และ docker-compose logs moodle ดู error
+เข้า shell ของ moodle: docker exec -it moodle_app /bin/sh แล้ว ping db หรือ nc -zv db 3306 / mysql -h db -u moodleuser -p (ถ้ามี client)
+ตรวจสอบ env vars ใน moodle (MOODLE_DB_HOST, MOODLE_DB_USER, MOODLE_DB_PASSWORD) ให้ตรงกับ DB
+ตรวจสอบว่า DB container มีข้อมูลและ service MySQL รัน (docker exec -it moodle_db mysql ...)
 วิธีแก้ไข:
-
+แก้คอนฟิก (รหัสผ่าน, ชื่อ DB, host) ให้ตรงกันแล้ว docker-compose restart
+ถ้า DB ยังไม่พร้อม ให้เพิ่ม healthcheck หรือใช้ wait-for script ก่อนเริ่ม Moodle
+ตรวจสอบ volume/ไฟล์ permission ถ้าฐานข้อมูลไม่สามารถเริ่มได้
+ดู logs เพื่อตรวจสอบปัญหาเฉพาะ (เช่น credential ผิด, corruption)
 ```
 
 **11. ถ้ารัน `docker-compose down -v` จะเกิดอะไรขึ้นกับข้อมูล?**
 
 คำตอบ:
 ```
-
+คำตอบ: คำสั่งจะหยุดและลบคอนเทนเนอร์, เครือข่าย และจะลบ Named volumes ด้วย (-v) — ผลคือข้อมูลที่เก็บใน db_data และ moodledata จะถูกลบ (สูญหาย) หากไม่มีการสำรองไว้
 
 ```
 
