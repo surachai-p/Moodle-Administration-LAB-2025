@@ -329,9 +329,8 @@ docker pull mariadb:latest
 ```
 
 **บันทึกผลการทดลอง 1:**
-```bash
- รูปผลการโหลด Images ที่สมบูรณ์ 
-```
+<img width="870" height="536" alt="image" src="https://github.com/user-attachments/assets/576848c3-ecf1-408a-879f-5b5e8c6adb5d" />
+
 #### 2.2 รัน Docker Compose
 
 ```bash
