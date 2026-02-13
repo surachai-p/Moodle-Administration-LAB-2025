@@ -357,7 +357,7 @@ Creating moodle_app ... done
 **บันทึกผลการทดลอง 2:**
 ```bash
  รูปผลการรัน docker-compose ที่สมบูรณ์
-![Uploading image.png…]()
+<img width="1327" height="283" alt="image" src="https://github.com/user-attachments/assets/ee4a1afd-e067-46db-87eb-3be5726024ae" />
 
 ```
 
@@ -381,6 +381,8 @@ moodle_db     docker-entrypoint.sh mariadbd    Up      3306/tcp
 **บันทึกผลการทดลอง 3:**
 ```bash
  รูปผลการรัน docker-compose ps
+<img width="1313" height="567" alt="image" src="https://github.com/user-attachments/assets/3f115362-d78d-4910-b0d2-9a1b5917997c" />
+
 ```
 
 
@@ -409,7 +411,9 @@ docker start moodle_app
 ```
 **บันทึกผลการทดลอง 4:**
 ```bash
- รูปผลการรัน docker-compose logs 
+ รูปผลการรัน docker-compose logs
+<img width="1278" height="743" alt="image" src="https://github.com/user-attachments/assets/fee0146a-d5f8-4ce7-9cda-4aba50e2df0d" />
+
 ```
 
 #### 2.5 ตรวจสอบ Network และ Volumes
@@ -428,6 +432,7 @@ docker volume inspect moodle-docker_moodledata
 ```bash
  รูปผลการรัน ตรวจสอบ volume
 ```
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/67fb520f-d52b-4ee1-a7da-3dfaeea2d2f5" />
 
 ---
 
@@ -477,7 +482,8 @@ docker volume inspect moodle-docker_moodledata
 
 **บันทึกผลการทดลอง 6:**
 ```bash
- รูปหน้า Dashboard 
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/9fd165c7-dc0b-4a44-a6d9-a4ca94d9062c" />
+
 ```
 
 ---
@@ -620,7 +626,8 @@ h1 {
 
 **บันทึกผลการทดลอง 6-1:**
 ```bash
- รูป ผลการปรับแต่ง Theme
+<img width="832" height="617" alt="image" src="https://github.com/user-attachments/assets/5b1b4f84-65b0-482e-9dc2-07681949974c" />
+
 ```
 ---
 
@@ -656,7 +663,8 @@ Course Category ใช้จัดกลุ่มรายวิชาตาม�
 
 **บันทึกผลการทดลอง 7:**
 ```bash
- รูปหน้า  Category ที่มีการสร้างกลุ่ม ตามกลุ่มสาระของ สพฐ.
+ <img width="1487" height="525" alt="image" src="https://github.com/user-attachments/assets/eee5ee09-2701-477f-87cd-ce2d22e03655" />
+
 ```
 
 #### 6.2.2 สร้าง Course (รายวิชา)
@@ -728,7 +736,8 @@ Learning outcomes:
 
 **บันทึกผลการทดลอง 8:**
 ```bash
- รูปหน้าผลลัพธ์การสร้างรายวิชา
+<img width="1493" height="532" alt="image" src="https://github.com/user-attachments/assets/25ab80d2-ee94-4d03-a738-8382ceae75a3" />
+
 ```
 
 ---
@@ -789,7 +798,8 @@ Programming, Python, Data Science
 
 **บันทึกผลการทดลอง 9:**
 ```bash
- รูปหน้า ผลการสร้าง User ใหม่
+<img width="1507" height="469" alt="image" src="https://github.com/user-attachments/assets/e219f648-ece4-40b0-984b-19b443202a4d" />
+
 ```
 
 **วิธีที่ 2: Upload Users (CSV)**
@@ -812,7 +822,8 @@ student003,Pass@123,สมศักดิ์,ขยัน,student003@example.com
 
 **บันทึกผลการทดลอง 10:**
 ```bash
- รูปหน้า ผลการ Upload Users
+ ![Uploading image.png…]()
+
 ```
 
 #### 6.4.3 การลงทะเบียนเรียน (Enrolment)
