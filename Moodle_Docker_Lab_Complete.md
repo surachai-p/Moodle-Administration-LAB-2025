@@ -934,20 +934,32 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+Image = ต้นแบบสำหรับสร้าง Container  
+Container = โปรแกรมที่รันจริงจาก Image  
 
+ตัวอย่าง:  
+Image: moodle:latest  
+Container: moodle_app
 ```
 
 **2. จากสถาปัตยกรรมในการทดลอง มี Container กี่ตัว? แต่ละตัวมีหน้าที่อะไร?**
 
 คำตอบ:
 ```
+มี 2 ตัว  
 
+1. moodle_app = Web Server รัน Moodle  
+2. moodle_db = Database (MariaDB)
 ```
 
 **3. จากการทดลองมีการจัดการ Volume แบบใด มีข้อดีข้อเสียอย่างไร?**
 
 คำตอบ:
 ```
+ใช้ Named Volume  
+
+ข้อดี: ข้อมูลไม่หายเมื่อ container ถูกลบ  
+ข้อเสีย: ถ้า docker-compose down -v ข้อมูลจะหาย
 
 ```
 
@@ -955,7 +967,10 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+Network ทำให้ Container คุยกันได้  
 
+สื่อสารผ่านชื่อ service เช่น  
+moodle_app ติดต่อ db ผ่านชื่อ "db"
 
 ```
 
@@ -964,14 +979,21 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+กำหนดลำดับการเริ่มทำงาน  
+เช่น ให้ db ทำงานก่อน moodle_app
 ```
 
 **6. ถ้าต้องการเปลี่ยน Port ของ Moodle  เป็น 9000 ต้องแก้ไขส่วนใดของไฟล์?**
 
 คำตอบ:
 ```
+แก้ใน docker-compose.yml
 
+จาก:
+- "8080:80"
+
+เป็น:
+- "9000:80"
 
 ```
 
@@ -979,6 +1001,9 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+db คือชื่อ service ของ database  
+
+ใช้ localhost ไม่ได้ เพราะ container แยกกันคนละตัว
 
 ```
 
@@ -987,7 +1012,13 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+Docker:
++ ติดตั้งง่าย ย้ายเครื่องสะดวก
+- ต้องเข้าใจ Docker
 
+ปกติ:
++ เข้าใจง่าย
+- ย้ายเครื่องยาก ตั้งค่าเยอะ
 ```
 
 **9. ถ้าต้องการเพิ่ม Container Redis สำหรับ Caching จะต้องแก้ไข docker-compose.yml อย่างไร?**
@@ -995,7 +1026,10 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 คำตอบ (เขียน YAML):
 ```yaml
 
-
+redis:
+  image: redis:latest
+  container_name: redis
+  restart: always
 
 
 
@@ -1010,17 +1044,24 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 คำตอบ:
 ```
 วิธีตรวจสอบ:
+วิธีตรวจสอบ:
+- เช็ค docker ps
+- ดู log ด้วย docker logs moodle_app
 
 
 วิธีแก้ไข:
 
 ```
+วิธีแก้ไข:
+- ตรวจสอบชื่อ db ให้ถูก
+- ตรวจสอบ password และ environment
 
 **11. ถ้ารัน `docker-compose down -v` จะเกิดอะไรขึ้นกับข้อมูล?**
 
 คำตอบ:
 ```
-
+Container และ Volume จะถูกลบ  
+ข้อมูลใน Database จะหายหมด
 
 ```
 
