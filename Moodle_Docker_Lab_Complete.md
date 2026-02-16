@@ -928,29 +928,31 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+Docker Image คือ "พิมพ์เขียว" (ไฟล์ต้นฉบับที่รันไม่ได้) ส่วน Docker Container คือ "บ้าน" (ตัวแอปพลิเคชันที่สร้างจากพิมพ์เขียวและกำลังทำงานจริง)
 ```
 
 **2. จากสถาปัตยกรรมในการทดลอง มี Container กี่ตัว? แต่ละตัวมีหน้าที่อะไร?**
 
 คำตอบ:
 ```
-
+1.มี Container  ตัว
+2.
 ```
 
 **3. จากการทดลองมีการจัดการ Volume แบบใด มีข้อดีข้อเสียอย่างไร?**
 
 คำตอบ:
 ```
-
+1.มีการจัดการ Volume แบบ
+2.ข้อดีข้อเสีย
 ```
 
 **4. Network ใน Docker Compose ทำหน้าที่อะไร? Container สื่อสารกันอย่างไร?**
 
 คำตอบ:
 ```
-
-
+1.Network ใน Docker Compose ทำหน้าที่เป็น "สายแลนเสมือน" ที่เชื่อมต่อ Container ชุดเดียวกันให้คุยกันผ่านชื่อบริการ (Service Name) ได้ทันทีโดยไม่ต้องระบุ IP Address
+2.Container สื่อสารกันแบบภายใน Host เดียวกัน (Local Networking)
 ```
 
 
@@ -958,22 +960,25 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+การกำหนดลำดับการเริ่มต้น เพื่อให้มั่นใจว่า Container ที่เป็นโครงสร้างพื้นฐาน (เช่น Database) จะถูกรันขึ้นมาก่อน Container ที่ต้องเรียกใช้งาน
 ```
 
 **6. ถ้าต้องการเปลี่ยน Port ของ Moodle  เป็น 9000 ต้องแก้ไขส่วนใดของไฟล์?**
 
 คำตอบ:
 ```
-
-
+moodle:
+  image:
+  #platform:
+  ports:
+    - "80:80" # แก้ไขตรงนี้: "พอร์ตเครื่องเรา:พอร์ตในคอนเทนเนอร์"
 ```
 
 **7. Environment Variables `MOODLE_DB_HOST=db` หมายความว่าอย่างไร? ทำไมไม่ใช้ `localhost`?**
 
 คำตอบ:
 ```
-
+MOODLE_DB_HOST=db คือการบอกให้ Moodle เชื่อมต่อไปยัง ชื่อ Service ของ Database ผ่านระบบ Internal DNS ของ Docker แทนการใช้ localhost ที่หมายถึงตัวมันเอง
 ```
 
 
@@ -981,21 +986,37 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+Docker ติดตั้งง่ายและย้ายเครื่องสะดวกด้วย Container ในขณะที่ Native ให้ประสิทธิภาพสูงสุดแต่จัดการ Library และการอัปเกรดได้ยากกว่า
 ```
 
 **9. ถ้าต้องการเพิ่ม Container Redis สำหรับ Caching จะต้องแก้ไข docker-compose.yml อย่างไร?**
 
 คำตอบ (เขียน YAML):
 ```yaml
+services:
+  # 1. เพิ่ม Service Redis
+  redis:
+    image: redis:7-alpine
+    container_name: moodle_redis
+    networks:
+      - moodle_net  # ต้องใช้ network เดียวกับ moodle และ db
 
+  moodle:
+    image: bitnami/moodle:latest
+    # 2. เพิ่มการเชื่อมต่อ
+    depends_on:
+      - db
+      - redis
+    environment:
+      - MOODLE_DATABASE_HOST=db
+      - MOODLE_REDIS_HOST=redis  # บอก Moodle ให้รู้จัก Redis
+      - MOODLE_REDIS_PORT=6379
+    networks:
+      - moodle_net
 
-
-
-
-
-
-
+networks:
+  moodle_net:
+    driver: bridge
 ```
 
 
@@ -1003,19 +1024,24 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-วิธีตรวจสอบ:
+วิธีตรวจสอบ: ลองเข้าไปใน Container Moodle แล้วสั่ง Ping หา DB ตรงๆ 
+> docker exec -it moodle_app ping db
 
-
-วิธีแก้ไข:
-
+วิธีแก้ไข: วิธีแก้แบบ Recreate Network สั่ง Restart
+บางครั้ง Docker Network ค้างหรือ Cache DNS เดิมไว้
+สั่ง Restart แบบล้างไฟล์ใหม่
+> docker-compose down      # หยุดและลบ Network เดิม
+  docker-compose up -d     # สร้าง Network และ Container ใหม่ทั้งหมด
 ```
 
 **11. ถ้ารัน `docker-compose down -v` จะเกิดอะไรขึ้นกับข้อมูล?**
 
 คำตอบ:
 ```
+ข้อมูลหายทั้งหมด
 
-
+ถ้าใช้ Bind Mounts(การ Map โฟลเดอร์ในเครื่องเราตรงๆ เช่น ./data:/bitnami/moodle) 
+ข้อมูลในโฟลเดอร์นั้นจะไม่โดนลบ เพราะ Docker จะลบเฉพาะ Named Volumes ที่มันเป็นเจ้าของเท่านั้น
 ```
 
 ---
