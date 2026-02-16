@@ -1,30 +1,28 @@
-version: '3.8'
-
 services:
   db:
     image: mariadb:latest
     container_name: moodle_db
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: moodle
+      MYSQL_ROOT_PASSWORD: AsPpeez1875! # แก้ไขรหัสผ่านให้เป็นของตนเอง
       MYSQL_USER: moodleuser
-      MYSQL_PASSWORD: moodlepassword
+      MYSQL_PASSWORD: AsPpeez1875 # แก้ไขรหัสผ่านให้เป็นของตนเอง
     volumes:
-      - db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql # กำหนด volume แบบ Name volume
     networks:
       - moodle_network
+    restart: unless-stopped
 
   moodle:
-    image: lthub/moodle:latest
+    image: lthub/moodle:education-4.5.8  # หากไม่สามารถโหลด image นี้ได้ ให้ลองใช้ lthub/moodle:latest
     container_name: moodle_app
     ports:
-      - "8080:80"
+      - "80:80" # กรณีที่เครื่องมี Web Server ที่ใช้งาน Port 80 อยู่แล้ว ให้เปลี่ยน Port เป็น "8080:80"  และการใช้งานต้องระบุ Port เป็น //localhost:8080
     environment:
       MOODLE_DB_TYPE: mariadb
-      MOODLE_DB_HOST: db
+      MOODLE_DB_HOST: db # ระบุเป็น db เพราะให้เชื่อมต่อไปยัง container name ที่ชื่อ db
       MOODLE_DB_NAME: moodle
       MOODLE_DB_USER: moodleuser
-      MOODLE_DB_PASSWORD: moodlepassword
+      MOODLE_DB_PASSWORD: AsPpeez1875 # แก้ไขรหัสผ่านให้เป็นของตนเอง ให้ตรงกับรหัสผ่าน MYSQL_PASSWORD ด้านบน
     volumes:
       - moodledata:/moodledata
     depends_on:
@@ -33,6 +31,7 @@ services:
       - db
     networks:
       - moodle_network
+    restart: unless-stopped
 
 networks:
   moodle_network:

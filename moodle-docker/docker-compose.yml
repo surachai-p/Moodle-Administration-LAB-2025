@@ -1,0 +1,42 @@
+services:
+  db:
+    image: mariadb:latest
+    container_name: moodle_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=AsPpeez1875!
+      - MYSQL_DATABASE=moodle         # <--- ต้องเพิ่มบรรทัดนี้ เพื่อสร้างฐานข้อมูลชื่อ moodle
+      - MYSQL_USER=moodleuser
+      - MYSQL_PASSWORD=AsPpeez1875
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - moodle_network
+    restart: unless-stopped
+
+  moodle:
+    image: lthub/moodle:education-4.5.8
+    container_name: moodle_app
+    ports:
+      - "80:80"
+    environment:
+      - MOODLE_DB_TYPE=mariadb
+      - MOODLE_DB_HOST=db
+      - MOODLE_DB_NAME=moodle        # <--- ต้องตรงกับ MYSQL_DATABASE ด้านบน
+      - MOODLE_DB_USER=moodleuser
+      - MOODLE_DB_PASSWORD=AsPpeez1875
+      - MOODLE_URL=http://localhost
+    volumes:
+      - moodledata:/moodledata
+    depends_on:
+      - db
+    networks:
+      - moodle_network
+    restart: unless-stopped
+
+networks:
+  moodle_network:
+    driver: bridge
+
+volumes:
+  db_data:
+  moodledata:
