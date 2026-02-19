@@ -948,28 +948,33 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+Docker Image คือไฟล์ต้นแบบ (template) แบบอ่านอย่างเดียวที่ใช้สร้าง Container
+Docker Container คือ Instance ที่ถูกรันจาก Image และสามารถทำงานจริงได้
 ```
 
 **2. จากสถาปัตยกรรมในการทดลอง มี Container กี่ตัว? แต่ละตัวมีหน้าที่อะไร?**
 
 คำตอบ:
 ```
-
+moodle_app ทำหน้าที่เป็น Web Server และรันระบบ Moodle
+moodle_db ทำหน้าที่เป็น Database Server (MariaDB)
 ```
 
 **3. จากการทดลองมีการจัดการ Volume แบบใด มีข้อดีข้อเสียอย่างไร?**
 
 คำตอบ:
 ```
-
+ใช้ Named Volume (db_data, moodledata)
+ข้อดี: ข้อมูลไม่หายแม้ลบ Container และสำรองข้อมูลง่าย
+ข้อเสีย: ต้องจัดการเอง หากลบ volume ข้อมูลจะหายทั้งหมด
 ```
 
 **4. Network ใน Docker Compose ทำหน้าที่อะไร? Container สื่อสารกันอย่างไร?**
 
 คำตอบ:
 ```
-
+Network ทำหน้าที่เป็นเครือข่ายกลางให้ Container ติดต่อกัน
+Container สื่อสารกันผ่าน ชื่อ service เช่น moodle ติดต่อ db ผ่าน hostname db
 
 ```
 
@@ -978,14 +983,18 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+ใช้กำหนดลำดับการเริ่ม Container
+ทำให้ moodle_app เริ่มหลัง moodle_db ลดปัญหาการเชื่อมต่อ Database ไม่ทัน
 ```
 
 **6. ถ้าต้องการเปลี่ยน Port ของ Moodle  เป็น 9000 ต้องแก้ไขส่วนใดของไฟล์?**
 
 คำตอบ:
 ```
+แก้ไขส่วน ports ของ service moodle
 
+ports:
+  - "9000:80"
 
 ```
 
@@ -993,7 +1002,8 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+หมายถึงให้ Moodle เชื่อมต่อ Database ที่ Container ชื่อ db
+ไม่ใช้ localhost เพราะ localhost จะอ้างถึง Container ตัวเอง ไม่ใช่ Container อื่น
 ```
 
 
@@ -1001,13 +1011,20 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+ข้อดี: ติดตั้งเร็ว ควบคุมเวอร์ชันง่าย ย้ายเครื่องสะดวก
+ข้อเสีย: ต้องเข้าใจ Docker และการจัดการ Container เพิ่มเติม
 ```
 
 **9. ถ้าต้องการเพิ่ม Container Redis สำหรับ Caching จะต้องแก้ไข docker-compose.yml อย่างไร?**
 
 คำตอบ (เขียน YAML):
 ```yaml
+services:
+  redis:
+    image: redis:latest
+    container_name: moodle_redis
+    networks:
+      - moodle_network
 
 
 
@@ -1025,8 +1042,15 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 ```
 วิธีตรวจสอบ:
 
+ตรวจสอบว่า moodle_db ทำงานอยู่ (docker-compose ps)
+
+ตรวจสอบ Logs (docker-compose logs moodle)
 
 วิธีแก้ไข:
+
+ตรวจสอบค่า MOODLE_DB_HOST, USER, PASSWORD
+
+รีสตาร์ท Container และตรวจสอบ Network
 
 ```
 
@@ -1034,7 +1058,8 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
-
+Container และ Volume ทั้งหมดจะถูกลบ
+ข้อมูลใน Database และ moodledata จะหายถาวร ไม่สามารถกู้คืนได้
 
 ```
 
