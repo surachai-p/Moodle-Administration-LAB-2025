@@ -715,9 +715,8 @@ Learning outcomes:
 4. คลิก **Save and display**
 
 **บันทึกผลการทดลอง 8:**
-```bash
- รูปหน้าผลลัพธ์การสร้างรายวิชา
-```
+<img width="3408" height="1974" alt="image" src="https://github.com/user-attachments/assets/6ce199c5-fc99-486b-b4c2-f71df6249581" />
+
 
 ---
 
