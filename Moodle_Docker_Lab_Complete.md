@@ -345,9 +345,8 @@ docker-compose up -d
 **ตรวจสอบการทำงานโดยใช้คำสั่ง docker-compose logs -f:**
 
 **บันทึกผลการทดลอง 2:**
-```bash
- รูปผลการรัน docker-compose ที่สมบูรณ์ 
-```
+<img width="1346" height="320" alt="image" src="https://github.com/user-attachments/assets/6896b121-fc9a-4abf-9071-44286c25918f" />
+
 
 #### 2.3 ตรวจสอบสถานะ Containers
 
@@ -367,9 +366,7 @@ moodle_db     docker-entrypoint.sh mariadbd    Up      3306/tcp
 - **Ports** = Port mapping ที่ใช้งาน
   
 **บันทึกผลการทดลอง 3:**
-```bash
- รูปผลการรัน docker-compose ps
-```
+<img width="1338" height="242" alt="image" src="https://github.com/user-attachments/assets/4355940c-1fc5-4064-84a7-f1ba5a831e77" />
 
 
 #### 2.4 ตรวจสอบ Logs
@@ -396,9 +393,8 @@ docker start moodle_app
 
 ```
 **บันทึกผลการทดลอง 4:**
-```bash
- รูปผลการรัน docker-compose logs 
-```
+<img width="1942" height="1034" alt="image" src="https://github.com/user-attachments/assets/07955ceb-b207-474e-8f30-c4fc1fde9e17" />
+
 
 #### 2.5 ตรวจสอบ Network และ Volumes
 
@@ -413,9 +409,8 @@ docker volume inspect moodle-docker_moodledata
 ```
 
 **บันทึกผลการทดลอง 5:**
-```bash
- รูปผลการรัน ตรวจสอบ volume
-```
+<img width="606" height="400" alt="image" src="https://github.com/user-attachments/assets/87e50c61-9d91-4b6b-8391-c0e864e3379a" />
+
 
 ---
 
@@ -930,6 +925,13 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+Docker Image คือ ไฟล์ต้นแบบ (Template) ที่ใช้สร้าง Container ภายในจะมีระบบปฏิบัติการ โปรแกรม และการตั้งค่าต่าง ๆ เช่น image ของ Moodle
+
+Docker Container คือ Instance ที่รันจริงจาก Image สามารถทำงานได้ มีสถานะ running/stop และมีข้อมูลระหว่างใช้งาน
+
+ตัวอย่าง:
+- Image: moodle:latest
+- Container: moodle_app ที่สร้างจาก image แล้วกำลังรันอยู่
 
 ```
 
@@ -937,6 +939,10 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+มี 2 Container
+
+1. moodle_app → ทำหน้าที่เป็น Web Server และรันระบบ Moodle
+2. db → ทำหน้าที่เป็น Database (เช่น MySQL/MariaDB) เก็บข้อมูลผู้ใช้ บทเรียน และข้อมูลระบบทั้งหมด
 
 ```
 
@@ -944,6 +950,16 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+ใช้ Named Volume (เช่น db_data)
+
+ข้อดี:
+- ข้อมูลไม่หายเมื่อ container ถูกลบ
+- จัดการง่าย
+- แยกข้อมูลออกจาก container
+
+ข้อเสีย:
+- ถ้าลบด้วย -v ข้อมูลจะหาย
+- ต้องระวังการ backup
 
 ```
 
@@ -951,6 +967,11 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+Network ทำหน้าที่เชื่อมต่อ container ให้สามารถติดต่อกันได้
+
+Container สื่อสารกันผ่านชื่อ service เช่น
+moodle_app เรียก database ผ่านชื่อ db
+ไม่ต้องใช้ IP Address เพราะ Docker จัดการ DNS ให้
 
 
 ```
@@ -960,6 +981,12 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+ใช้กำหนดลำดับการเริ่มต้น container
+
+เช่น moodle_app depends_on db
+หมายความว่า db จะถูก start ก่อน moodle_app
+
+ช่วยลดปัญหา container เริ่มทำงานก่อน database พร้อมใช้งาน
 
 ```
 
@@ -967,6 +994,15 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+แก้ไขในส่วน ports ของ service moodle_app
+
+จาก:
+ports:
+  - "8080:80"
+
+เป็น:
+ports:
+  - "9000:80"
 
 
 ```
@@ -975,6 +1011,10 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+หมายความว่า Moodle จะเชื่อมต่อฐานข้อมูลที่ service ชื่อ db
+
+ไม่ใช้ localhost เพราะใน container คำว่า localhost หมายถึง container ตัวเอง
+แต่ database อยู่คนละ container จึงต้องใช้ชื่อ service แทน
 
 ```
 
@@ -983,6 +1023,20 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+ข้อดีของ Docker:
+- ติดตั้งง่าย
+- ย้ายเครื่องได้สะดวก
+- ควบคุมเวอร์ชันได้
+- ลดปัญหา dependency
+
+ข้อเสีย:
+- ต้องเข้าใจ Docker
+- การ debug บางครั้งซับซ้อนกว่า
+- ใช้ resource มากขึ้นเล็กน้อย
+
+แบบปกติ:
+ข้อดี → ควบคุมได้ละเอียด เหมาะกับ production ขนาดใหญ่
+ข้อเสีย → ติดตั้งยุ่งยาก และย้ายเครื่องลำบาก
 
 ```
 
@@ -990,13 +1044,19 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ (เขียน YAML):
 ```yaml
+services:
+  redis:
+    image: redis:latest
+    container_name: redis_cache
+    restart: always
 
-
-
-
-
-
-
+  moodle_app:
+    image: moodle:latest
+    depends_on:
+      - db
+      - redis
+    environment:
+      - MOODLE_CACHE_HOST=redis
 
 ```
 
@@ -1006,9 +1066,16 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 คำตอบ:
 ```
 วิธีตรวจสอบ:
-
+- ใช้คำสั่ง docker ps ดูว่า db รันอยู่หรือไม่
+- ดู log ด้วย docker logs moodle_app
+- ตรวจสอบ environment variable ว่าถูกต้องหรือไม่
+- ตรวจสอบว่าใช้ชื่อ db ถูกต้อง
 
 วิธีแก้ไข:
+- แก้ไขค่า MOODLE_DB_HOST ให้ถูกต้อง
+- ตรวจสอบ username/password
+- ตรวจสอบว่า depends_on ถูกตั้งค่าไว้
+- restart container ใหม่
 
 ```
 
@@ -1016,6 +1083,11 @@ docker exec -i moodle_db mysql -u moodleuser -pmoodlepassword moodle < backup_20
 
 คำตอบ:
 ```
+จะหยุดและลบ container ทั้งหมด
+และลบ Volume ด้วย
+
+ข้อมูลใน database จะหายทั้งหมด
+ต้อง restore จาก backup เท่านั้น
 
 
 ```
